@@ -25,4 +25,4 @@ Program used:
 [`/output`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/output) contains the results and figures generated from the scripts:
 - FastQC_reports: Read quality check for each locus
 
-[`report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/report.md) details the advances of the projec, discuss the results and provide suggestions for future studies. 
+[`report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/report.md) details the advances of the project, discuss the results and provide suggestions for future studies. 
