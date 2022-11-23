@@ -1,7 +1,6 @@
 # OS generated files #
 
-.DS_Store
-.DS_Store?
+.DS_Store*
 ._*
 .Spotlight-V100
 .Trashes
@@ -12,18 +11,16 @@ Icon\r
 
 # Logs and outputs #
 .Rout
-.Rhistory
-.RData
-.RData\ (1)
-.Rhistory\ (1)
+.Rhistory*
+.RData*
 .Rapp.history
 
 # Large data files #
-.fastq
-.fastq.gz
-.fastqc.zip
-.fq
-.fq.gz
+*.fastq
+*.fastq.gz
+*.fastqc.zip
+*.fq
+*.fq.gz
 
 # Directories with raw sequences
 data/*/fastq/
