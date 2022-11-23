@@ -18,9 +18,9 @@ In this repository you can find scripts, data and output to analyse microbial co
 Program used:
 - [FastQC v0.11.9](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 - [MultiQC v1.13](https://multiqc.info/)
+- [AMPtk v1.5.4](https://github.com/nextgenusfs/amptk)
 
 [`/data`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/data) contains the data and metadata associated to the project, apart from large fastq files (raw data).
-
 
 [`/output`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/output) contains the results and figures generated from the scripts:
 - FastQC_reports: Read quality check for each locus
