@@ -13,7 +13,7 @@ Soil samples were collected from 106 sites across the state of Victoria, at two 
 In this repository you can find scripts, data and output to analyse microbial communities (fungi and bacteria) from soil samples using Illumina MiSeq. 
 
 
-[`/bin`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/bin) contains bash and R scripts to denoise Illumina MiSeq 2x300 reads, generate OTUs, assign taxonomy and trophic mode (fungi), and analyze alpha and beta diversity. 
+[`/bin`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/bin) contains documented bash and R scripts to denoise Illumina MiSeq 2x300 reads, generate OTUs, assign taxonomy and trophic mode (fungi), and analyze alpha and beta diversity. 
 
 Program used:
 - [FastQC v0.11.9](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
