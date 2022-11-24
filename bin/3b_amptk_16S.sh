@@ -43,7 +43,7 @@ mv T0152.* ../data/16S/amptk
 mv T0153.* ../data/16S/amptk
 
 # Merge files from the two runs
-cat ../data/16S/amptk/T0152.demux.fq.gz ../data/16S/amptk/T0153.demux.fq.gz > ../data/16S/amptk/combined.demux.fq.gz
+cat ../data/16S/amptk/T0152.demux.fq.gz ../data/16S/amptk/T0153.demux.fq.gz > ../data/16S/amptk/combined16S.demux.fq.gz
 
 
 ### Step 2. Cluster sequences at 97% similarity: This step generates an OTU table (.txt), a reference sequence file (.fasta) and a log file
@@ -54,7 +54,7 @@ cat ../data/16S/amptk/T0152.demux.fq.gz ../data/16S/amptk/T0153.demux.fq.gz > ..
 # -m, Minimum size to keep an OTU (singleton filter). Default: 2
 # --uchime_ref, Chimera filtering [16S, LSU, COI, 16S, custom path]
 
-amptk cluster -i ../data/16S/amptk/combined.demux.fq.gz -o cluster16S --uchime_ref 16S
+amptk cluster -i ../data/16S/amptk/combined16S.demux.fq.gz -o cluster16S --uchime_ref 16S
              
 # Move output files to amptk folder in /data
 mv cluster16S* ../data/16S/amptk
@@ -68,10 +68,10 @@ mv cluster16S* ../data/16S/amptk
 # -p,  Index bleed between samples (percent). Default: 0.005
 # --min_reads_otu, Minimum size to keep an OTU. Default: 2
 
-amptk filter -i ../data/16S/amptk/cluster.otu_table.txt -f ../data/16S/amptk/cluster.cluster.otus.fa -o filter -p 0.005 --min_reads_otu 10
+amptk filter -i ../data/16S/amptk/cluster16S.otu_table.txt -f ../data/16S/amptk/cluster16S.cluster.otus.fa -o filter16S -p 0.005 --min_reads_otu 10
 
 # Move output files to amptk folder in /data
-mv filter* ../data/16S/amptk
+mv filter16S* ../data/16S/amptk
 
 
 ### Step 4. Assign taxonomy to OTUs
@@ -85,14 +85,14 @@ mv filter* ../data/16S/amptk
 # -f, Filtered reference sequence file (from step 3)
 # -o, Output folder name
 # -m, Mapping file
-# -d, Pre-installed database Select Pre-installed database [ITS1, ITS2, ITS, 16S, LSU, COI]. Default: ITS2]. Default: 16S2
+# -d, Pre-installed database Select Pre-installed database [ITS1, ITS2, ITS, 16S, LSU, COI]. Default: ITS2]. Default: ITS2
 # --method, Taxonomy method. Default: hybrid [utax, sintax, usearch, hybrid, rdp, blast]
 # --add2db, Add FASTA files to DB on the fly.
 # --tax_filter, Remove OTUs that do not match filter, i.e. Fungi to keep only fungi.
 
-amptk taxonomy -i ../data/16S/amptk/filter.final.txt -f ../data/16S/amptk/filter.filtered.otus.fa -o taxonomy -m ../data/16S/mapping_file_16S.txt -d 16S
+amptk taxonomy -i ../data/16S/amptk/filter16S.final.txt -f ../data/16S/amptk/filter16S.filtered.otus.fa -o taxonomy16S -m ../data/16S/mapping_file_16S.txt -d 16S
 
 # Move output files to new folder "taxonomy"
-mv taxonomy* ../data/16S/amptk
+mv taxonomy16S* ../data/16S/amptk
 
 # The .biom file that is generated can be uploaded in R for further diversity analyses

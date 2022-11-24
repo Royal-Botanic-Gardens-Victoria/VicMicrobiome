@@ -1,0 +1,13 @@
+[11/24/22 16:53:08]: /opt/miniconda3/miniconda3/envs/amptk/bin/amptk filter -i ../data/16S/amptk/cluster16S.otu_table.txt -f ../data/16S/amptk/cluster16S.cluster.otus.fa -o filter16S -p 0.005 --min_reads_otu 10
+
+[11/24/22 16:53:09]: OS: Ubuntu 18.10, 128 cores, ~ 1052 GB RAM. Python: 3.9.10
+[11/24/22 16:53:09]: Python Modules: numpy v1.22.2, pandas v1.4.0, matplotlib v3.5.1, psutil v5.9.0, natsort v8.1.0, biopython v1.79, edlib v1.3.9, biom-format v2.1.10
+[11/24/22 16:53:09]: AMPtk v1.5.4, VSEARCH v2.21.1
+[11/24/22 16:53:09]: Loading OTU table: ../data/16S/amptk/cluster16S.otu_table.txt
+[11/24/22 16:53:11]: OTU table contains 232 samples, 72,171 OTUs, and 9,500,907 reads counts
+[11/24/22 16:53:12]: Sorting OTU table naturally
+[11/24/22 16:53:15]: Removing 31,527 OTUs according to --min_reads_otu 10
+[11/24/22 16:53:29]: Normalizing OTU table to number of reads per sample
+[11/24/22 16:53:29]: Overwriting auto detect index-bleed, setting to 0.500000%
+[11/24/22 16:54:34]: Filtered OTU table contains 232 samples, 40,644 OTUs, and 9,327,459 read counts
+[11/24/22 16:54:35]: Finding valid OTUs

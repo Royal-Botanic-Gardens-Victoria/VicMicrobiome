@@ -43,7 +43,7 @@ mv T0127.* ../data/ITS/amptk
 mv T0101.* ../data/ITS/amptk
 
 # Merge files from the two runs
-cat ../data/ITS/amptk/T0127.demux.fq.gz ../data/ITS/amptk/T0101.demux.fq.gz > ../data/ITS/amptk/combined.demux.fq.gz
+cat ../data/ITS/amptk/T0127.demux.fq.gz ../data/ITS/amptk/T0101.demux.fq.gz > ../data/ITS/amptk/combinedITS.demux.fq.gz
 
 
 ### Step 2. Cluster sequences at 97% similarity: This step generates an OTU table (.txt), a reference sequence file (.fasta) and a log file
@@ -54,7 +54,7 @@ cat ../data/ITS/amptk/T0127.demux.fq.gz ../data/ITS/amptk/T0101.demux.fq.gz > ..
 # -m, Minimum size to keep an OTU (singleton filter). Default: 2
 # --uchime_ref, Chimera filtering [ITS, LSU, COI, 16S, custom path]
 
-amptk cluster -i ../data/ITS/amptk/combined.demux.fq.gz -o clusterITS --uchime_ref ITS
+amptk cluster -i ../data/ITS/amptk/combinedITS.demux.fq.gz -o clusterITS --uchime_ref ITS
              
 # Move output files to amptk folder in /data
 mv clusterITS* ../data/ITS/amptk
@@ -68,10 +68,10 @@ mv clusterITS* ../data/ITS/amptk
 # -p,  Index bleed between samples. Default: 0.005 (0.5%)
 # --min_reads_otu, Minimum size to keep an OTU. Default: 2
 
-amptk filter -i ../data/ITS/amptk/cluster.otu_table.txt -f ../data/ITS/amptk/cluster.cluster.otus.fa -o filter -p 0.005 --min_reads_otu 10
+amptk filter -i ../data/ITS/amptk/clusterITS.otu_table.txt -f ../data/ITS/amptk/clusterITS.cluster.otus.fa -o filterITS -p 0.005 --min_reads_otu 10
 
 # Move output files to amptk folder in /data
-mv filter* ../data/ITS/amptk
+mv filterITS* ../data/ITS/amptk
 
 
 ### Step 4. Assign taxonomy to OTUs
@@ -90,9 +90,9 @@ mv filter* ../data/ITS/amptk
 # --add2db, Add FASTA files to DB on the fly.
 # --tax_filter, Remove OTUs that do not match filter, i.e. Fungi to keep only fungi.
 
-amptk taxonomy -i ../data/ITS/amptk/filter.final.txt -f ../data/ITS/amptk/filter.filtered.otus.fa -o taxonomy -m ../data/ITS/mapping_file_ITS.txt -d ITS1 --tax_filter Fungi
+amptk taxonomy -i ../data/ITS/amptk/filterITS.final.txt -f ../data/ITS/amptk/filterITS.filtered.otus.fa -o taxonomyITS -m ../data/ITS/mapping_file_ITS.txt -d ITS1 --tax_filter Fungi
 
 # Move output files to new folder "taxonomy"
-mv taxonomy* ../data/ITS/amptk
+mv taxonomyITS* ../data/ITS/amptk
 
 # The .biom file that is generated can be uploaded in R for further diversity analyses
