@@ -54,10 +54,10 @@ cat ../data/16S/amptk/T0152.demux.fq.gz ../data/16S/amptk/T0153.demux.fq.gz > ..
 # -m, Minimum size to keep an OTU (singleton filter). Default: 2
 # --uchime_ref, Chimera filtering [16S, LSU, COI, 16S, custom path]
 
-amptk cluster -i ../data/16S/amptk/combined.demux.fq.gz -o cluster --uchime_ref 16S
+amptk cluster -i ../data/16S/amptk/combined.demux.fq.gz -o cluster16S --uchime_ref 16S
              
 # Move output files to amptk folder in /data
-mv cluster* ../data/16S/amptk
+mv cluster16S* ../data/16S/amptk
 
 
 ### Step 3. Filter OTUs for index-bleed (based on % of total read count if no mock is available)

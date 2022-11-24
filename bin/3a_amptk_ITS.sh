@@ -54,10 +54,10 @@ cat ../data/ITS/amptk/T0127.demux.fq.gz ../data/ITS/amptk/T0101.demux.fq.gz > ..
 # -m, Minimum size to keep an OTU (singleton filter). Default: 2
 # --uchime_ref, Chimera filtering [ITS, LSU, COI, 16S, custom path]
 
-amptk cluster -i ../data/ITS/amptk/combined.demux.fq.gz -o cluster --uchime_ref ITS
+amptk cluster -i ../data/ITS/amptk/combined.demux.fq.gz -o clusterITS --uchime_ref ITS
              
 # Move output files to amptk folder in /data
-mv cluster* ../data/ITS/amptk
+mv clusterITS* ../data/ITS/amptk
 
 
 ### Step 3. Filter OTUs for index-bleed (based on % of total read count if no mock is available)
@@ -90,7 +90,7 @@ mv filter* ../data/ITS/amptk
 # --add2db, Add FASTA files to DB on the fly.
 # --tax_filter, Remove OTUs that do not match filter, i.e. Fungi to keep only fungi.
 
-amptk taxonomy -i ../data/ITS/amptk/filter.final.txt -f ../data/ITS/amptk/filter.filtered.otus.fa -o taxonomy -m ../data/ITS/mapping_file.txt -d ITS1 --tax_filter Fungi
+amptk taxonomy -i ../data/ITS/amptk/filter.final.txt -f ../data/ITS/amptk/filter.filtered.otus.fa -o taxonomy -m ../data/ITS/mapping_file_ITS.txt -d ITS1 --tax_filter Fungi
 
 # Move output files to new folder "taxonomy"
 mv taxonomy* ../data/ITS/amptk
