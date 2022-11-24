@@ -1,4 +1,4 @@
-# Soil meta-barcoding across the state of Victoria, Australia
+# Soil meta-barcoding across the state of Victoria (Australia)
 
 # <span style="color:red">*** *Under development* ***</span>
 
