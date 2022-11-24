@@ -22,15 +22,17 @@ The quality of 16S reads (bacteria) was below the 1% error rate for up to 2/3 of
 **Phred score = 20: likelihood of finding 1 incorrect base call among 100 bases.*
 
 
-# OTU clustering
+# Denoising
 
 The full ITS amplicon that was generated with primers ITS1F and ITS4 has an average size >600 bp, so most R1 and R2 reads could not be merged accurately (up to >90% of reads per sample). In [`amptk`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/bin/3a_amptk_ITS.sh), we therefore analysed the ITS1 region only, using both R1 and merged reads. To account for the large variation in read lenght within ITS1, we set the read lenght to 350 bp and "padded" shorter reads with unknown bp (Ns).
-
 
 The 16S primers 27F/519R generated an amplicon of 450-490 bp per sample after merging the reads. In [`amptk`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/bin/3b_amptk_16S.sh), we therefore set the read lenght to 500 bp (without "padding" shorter reads) and used only merged reads to improve data quality. We avoided the recovery of unmerged R1 reads (as for ITS above) because it generated a enormous amount of dubious sequences, including in the negative control samples.
 
 
+# OTU clustering
 
+### Note
+Two approaches are commonly used to identifiy microbial diversity from sequence data: 1) amplicon sequence variants (ASV) represent unique sequences, and 2) operational taxonomic units (OTU) result from clustering sequences at a similarity threshold, usually 97%. The ASV approach has been used extensively to study bacterial communities but are expected to perform poorly for fungal groups that commonly exhibit multiple variants of rRNA gene and ITS copies per genome [(Tedersoo et al. 2022)](https://onlinelibrary.wiley.com/doi/10.1111/mec.16460). ASV approaches therefore tend to overestimate richness of common fungal species (due to haplotype variation) but underestimate richness of rare species (by removing rare variants). Because community composition is  driven by abundant taxa, the results are similar betwen ASV and OTU approaches.
 
 
 # Suggestions 
