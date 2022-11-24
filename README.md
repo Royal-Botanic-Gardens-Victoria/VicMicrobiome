@@ -26,7 +26,7 @@ Program used:
 
 Soil samples were collected from 106 sites across the state of Victoria, at two soil depth (0–10 cm and 10–20 cm), for a total of 212 samples. Vegetation, edaphic variables and additional meta-data associated to the project can be found [here](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/data/VicMicrobiome_metadata.csv).
 
-Amplicons were generated and sequenced by [BioPlatform Australia](https://bioplatforms.com/projects/australian-microbiome/) for the following regions:
+Amplicons were generated, sequenced and demultiplexed by [BioPlatform Australia](https://bioplatforms.com/projects/australian-microbiome/) for the following regions:
 - ITS (fungi) with primers ITS1F/ITS4
 - 16S (bacteria) with primers 27F/519R 
 

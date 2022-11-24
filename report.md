@@ -40,4 +40,4 @@ Improve sequence quality
 - Bench work (equimolar concentrations between samples, spike-in?)
 
 Reduce index bleed
-- Do not allow any error when reading the barcode during demultiplexing
+- Do not allow any error when reading the barcode during demultiplexing (here two mismatched were allowed)
