@@ -1,0 +1,48 @@
+[11/25/22 15:52:46]: /opt/miniconda3/miniconda3/envs/amptk/bin/amptk taxonomy -i ../data/16S/amptk/filter16S.final.txt -f ../data/16S/amptk/filter16S.filtered.otus.fa -o taxonomy16S -m ../data/16S/amptk/mapping_file_16S.txt -d 16S --tax_filter Bacteria
+
+[11/25/22 15:52:46]: OS: Ubuntu 18.10, 128 cores, ~ 1052 GB RAM. Python: 3.9.10
+[11/25/22 15:52:46]: Python Modules: numpy v1.22.2, pandas v1.4.0, matplotlib v3.5.1, psutil v5.9.0, natsort v8.1.0, biopython v1.79, edlib v1.3.9, biom-format v2.1.10
+[11/25/22 15:52:46]: AMPtk v1.5.4, VSEARCH v2.21.1
+[11/25/22 15:52:46]: Loading FASTA Records
+[11/25/22 15:52:46]: 1,040 OTUs
+[11/25/22 15:52:46]: Global alignment OTUs with usearch_global (VSEARCH) against 16S.udb
+[11/25/22 15:52:46]: vsearch --usearch_global ../data/16S/amptk/filter16S.filtered.otus.fa --db /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/16S.udb --userout taxonomy16S.usearch.txt --id 0.7 --strand both --output_no_hits --maxaccepts 500 --top_hits_only --userfields query+target+id --notrunclabels --threads 128
+[11/25/22 15:52:51]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+https://github.com/torognes/vsearch
+
+Reading UDB file /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/16S.udb 100%
+Reorganizing data in memory 100%
+Creating bitmaps 100%
+Parsing abundances 100%
+18961589 nt in 13118 seqs, min 320, max 2205, avg 1445
+Searching 100%
+Matching unique query sequences: 1040 of 1040 (100.00%)
+
+[11/25/22 15:52:51]: Classifying OTUs with SINTAX (VSEARCH)
+[11/25/22 15:52:51]: vsearch --sintax ../data/16S/amptk/filter16S.filtered.otus.fa --db /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/16S_SINTAX.udb --tabbedout taxonomy16S.sintax.txt -sintax_cutoff 0.8 --threads 128 --notrunclabels
+[11/25/22 15:52:52]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+https://github.com/torognes/vsearch
+
+Reading UDB file /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/16S_SINTAX.udb 100%
+Reorganizing data in memory 100%
+Creating bitmaps 100%
+Parsing abundances 100%
+18961589 nt in 13118 seqs, min 320, max 2205, avg 1445
+Classifying sequences 100%
+Classified 1040 of 1040 sequences (100.00%)
+
+[11/25/22 15:52:52]: SINTAX results parsed, resulting in 1,040 taxonomy predictions
+[11/25/22 15:52:52]: Global alignment results parsed, resulting in 1,040 taxonomy predictions
+[11/25/22 15:52:52]: Combined OTU taxonomy dictionary contains 1,040 taxonomy predictions
+[11/25/22 15:52:52]: Appending taxonomy to OTU table and OTUs
+[11/25/22 15:52:52]: Found 0 OTUs not matching Bacteria, writing 1040 Bacteria hits to taxonomy OTU table
+[11/25/22 15:52:52]: Generating phylogenetic tree (MAFFT/FastTree)
+[11/25/22 15:52:52]: mafft ../data/16S/amptk/filter16S.filtered.otus.fa
+[11/25/22 15:53:00]: fasttree -nt taxonomy16S.mafft.fasta
+[11/25/22 15:53:22]: Taxonomy finished: taxonomy16S.taxonomy.txt
+[11/25/22 15:53:22]: Classic OTU table with taxonomy: taxonomy16S.otu_table.taxonomy.txt
+[11/25/22 15:53:23]: biom convert -i taxonomy16S.otu_table.tmp -o taxonomy16S.biom.tmp --table-type OTU table --to-json
+[11/25/22 15:53:24]: biom add-metadata -i taxonomy16S.biom.tmp -o taxonomy16S.biom --observation-metadata-fp taxonomy16S.qiime.taxonomy.txt -m ../data/16S/amptk/mapping_file_16S.txt --sc-separated taxonomy --output-as-json
+[11/25/22 15:53:25]: BIOM OTU table created: taxonomy16S.biom
+[11/25/22 15:53:25]: OTUs with taxonomy: taxonomy16S.otus.taxonomy.fa
+[11/25/22 15:53:25]: OTU phylogeny: taxonomy16S.tree.phy

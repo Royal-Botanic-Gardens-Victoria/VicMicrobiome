@@ -1,0 +1,5 @@
+Input Reads: 66644
+Surviving Reads: 50347
+Surviving Read Percent: 75.55
+Dropped Reads: 16297
+Dropped Read Percent: 24.45

@@ -1,86 +1,86 @@
-[11/24/22 15:32:17]: /opt/miniconda3/miniconda3/envs/amptk/bin/amptk cluster -i ../data/16S/amptk/combined.demux.fq.gz -o cluster16S --uchime_ref 16S
+[11/25/22 15:47:15]: /opt/miniconda3/miniconda3/envs/amptk/bin/amptk cluster -i ../data/16S/amptk/16S.demux.fq.gz -o cluster16S --uchime_ref 16S
 
-[11/24/22 15:32:17]: OS: Ubuntu 18.10, 128 cores, ~ 1052 GB RAM. Python: 3.9.10
-[11/24/22 15:32:17]: Python Modules: numpy v1.22.2, pandas v1.4.0, matplotlib v3.5.1, psutil v5.9.0, natsort v8.1.0, biopython v1.79, edlib v1.3.9, biom-format v2.1.10
-[11/24/22 15:32:17]: AMPtk v1.5.4, VSEARCH v2.21.1
-[11/24/22 15:32:17]: Loading FASTQ Records
-[11/24/22 15:32:17]: vsearch --fastq_filter ../data/16S/amptk/combined.demux.fq.gz --fastaout cluster16S_tmp/cluster16S.orig.fa --fastq_qmax 55 --threads 1
-[11/24/22 15:39:03]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+[11/25/22 15:47:15]: OS: Ubuntu 18.10, 128 cores, ~ 1052 GB RAM. Python: 3.9.10
+[11/25/22 15:47:15]: Python Modules: numpy v1.22.2, pandas v1.4.0, matplotlib v3.5.1, psutil v5.9.0, natsort v8.1.0, biopython v1.79, edlib v1.3.9, biom-format v2.1.10
+[11/25/22 15:47:15]: AMPtk v1.5.4, VSEARCH v2.21.1
+[11/25/22 15:47:15]: Loading FASTQ Records
+[11/25/22 15:47:15]: vsearch --fastq_filter ../data/16S/amptk/16S.demux.fq.gz --fastaout cluster16S_tmp/cluster16S.orig.fa --fastq_qmax 55 --threads 1
+[11/25/22 15:48:20]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
 https://github.com/torognes/vsearch
 
 Reading input file 100%
-13607911 sequences kept (of which 0 truncated), 0 sequences discarded.
+2112118 sequences kept (of which 0 truncated), 0 sequences discarded.
 
-[11/24/22 15:39:23]: 13,607,911 reads (1.9 GB)
-[11/24/22 15:39:23]: Quality Filtering, expected errors < 1.0
-[11/24/22 15:39:23]: vsearch --fastq_filter ../data/16S/amptk/combined.demux.fq.gz --fastq_maxee 1.0 --fastqout cluster16S_tmp/cluster16S.EE1.0.filter.fq --fastaout cluster16S_tmp/cluster16S.EE1.0.filter.fa --fastq_qmax 55 --threads 1
-[11/24/22 15:46:35]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+[11/25/22 15:48:23]: 2,112,118 reads (321.0 MB)
+[11/25/22 15:48:23]: Quality Filtering, expected errors < 1.0
+[11/25/22 15:48:23]: vsearch --fastq_filter ../data/16S/amptk/16S.demux.fq.gz --fastq_maxee 1.0 --fastqout cluster16S_tmp/cluster16S.EE1.0.filter.fq --fastaout cluster16S_tmp/cluster16S.EE1.0.filter.fa --fastq_qmax 55 --threads 1
+[11/25/22 15:49:30]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
 https://github.com/torognes/vsearch
 
 Reading input file 100%
-12644338 sequences kept (of which 0 truncated), 963573 sequences discarded.
+1691132 sequences kept (of which 0 truncated), 420986 sequences discarded.
 
-[11/24/22 15:46:48]: 12,644,338 reads passed
-[11/24/22 15:46:48]: De-replication (remove duplicate reads)
-[11/24/22 15:46:48]: vsearch --derep_fulllength cluster16S_tmp/cluster16S.EE1.0.filter.fa --sizeout --output cluster16S_tmp/cluster16S.EE1.0.derep.fa --threads 1
-[11/24/22 15:47:43]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+[11/25/22 15:49:32]: 1,691,132 reads passed
+[11/25/22 15:49:32]: De-replication (remove duplicate reads)
+[11/25/22 15:49:32]: vsearch --derep_fulllength cluster16S_tmp/cluster16S.EE1.0.filter.fa --sizeout --output cluster16S_tmp/cluster16S.EE1.0.derep.fa --threads 1
+[11/25/22 15:49:41]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
 https://github.com/torognes/vsearch
 
 Dereplicating file cluster16S_tmp/cluster16S.EE1.0.filter.fa 100%
-5829011898 nt in 12644338 seqs, min 150, max 500, avg 461
+784726322 nt in 1691132 seqs, min 159, max 500, avg 464
 Sorting 100%
-6892009 unique sequences, avg cluster 1.8, median 1, max 34465
+1546622 unique sequences, avg cluster 1.1, median 1, max 1646
 Writing FASTA output file 100%
 
-[11/24/22 15:47:53]: 6,892,009 reads passed
-[11/24/22 15:47:53]: vsearch --sortbysize cluster16S_tmp/cluster16S.EE1.0.derep.fa --minsize 2 --output cluster16S_tmp/cluster16S.EE1.0.sort.fa --threads 1
-[11/24/22 15:48:05]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+[11/25/22 15:49:43]: 1,546,622 reads passed
+[11/25/22 15:49:43]: vsearch --sortbysize cluster16S_tmp/cluster16S.EE1.0.derep.fa --minsize 2 --output cluster16S_tmp/cluster16S.EE1.0.sort.fa --threads 1
+[11/25/22 15:49:45]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
 https://github.com/torognes/vsearch
 
 Reading file cluster16S_tmp/cluster16S.EE1.0.derep.fa 100%
-3177327107 nt in 6892009 seqs, min 150, max 500, avg 461
+718804955 nt in 1546622 seqs, min 159, max 500, avg 465
 Getting sizes 100%
 Sorting 100%
-Median abundance: 3
+Median abundance: 2
 Writing output 100%
 
-[11/24/22 15:48:05]: Clustering OTUs (VSEARCH --cluster_smallmem)
-[11/24/22 15:48:05]: vsearch --cluster_smallmem cluster16S_tmp/cluster16S.EE1.0.sort.fa --relabel OTU --usersort --sizeout --id 0.97 --centroids cluster16S_tmp/cluster16S.EE1.0.smallmem.otus.fa --threads 128
-[11/24/22 15:50:18]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+[11/25/22 15:49:45]: Clustering OTUs (VSEARCH --cluster_smallmem)
+[11/25/22 15:49:45]: vsearch --cluster_smallmem cluster16S_tmp/cluster16S.EE1.0.sort.fa --relabel OTU --usersort --sizeout --id 0.97 --centroids cluster16S_tmp/cluster16S.EE1.0.smallmem.otus.fa --threads 128
+[11/25/22 15:49:52]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
 https://github.com/torognes/vsearch
 
 Reading file cluster16S_tmp/cluster16S.EE1.0.sort.fa 100%
-299056929 nt in 647976 seqs, min 150, max 500, avg 462
+18558641 nt in 40701 seqs, min 372, max 500, avg 456
 Masking 100%
 Counting k-mers 100%
 Clustering 100%
 Sorting clusters 100%
 Writing clusters 100%
-Clusters: 87921 Size min 1, max 9877, avg 7.4
-Singletons: 44340, 6.8% of seqs, 50.4% of clusters
+Clusters: 7194 Size min 1, max 799, avg 5.7
+Singletons: 3519, 8.6% of seqs, 48.9% of clusters
 
-[11/24/22 15:50:18]: De novo Chimera detection (VSEARCH --uchime_denovo)
-[11/24/22 15:50:18]: vsearch --uchime_denovo cluster16S_tmp/cluster16S.EE1.0.smallmem.otus.fa --sizein --nonchimeras cluster16S_tmp/cluster16S.EE1.0.otus.fa
-[11/24/22 15:56:20]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+[11/25/22 15:49:52]: De novo Chimera detection (VSEARCH --uchime_denovo)
+[11/25/22 15:49:52]: vsearch --uchime_denovo cluster16S_tmp/cluster16S.EE1.0.smallmem.otus.fa --sizein --nonchimeras cluster16S_tmp/cluster16S.EE1.0.otus.fa
+[11/25/22 15:50:12]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
 https://github.com/torognes/vsearch
 
 Reading file cluster16S_tmp/cluster16S.EE1.0.smallmem.otus.fa 100%
-38463874 nt in 87921 seqs, min 150, max 500, avg 437
+3320445 nt in 7194 seqs, min 372, max 500, avg 462
 Masking 100%
 Sorting by abundance 100%
 Counting k-mers 100%
 Detecting chimeras 100%
-Found 13917 (15.8%) chimeras, 73875 (84.0%) non-chimeras,
-and 129 (0.1%) borderline sequences in 87921 unique sequences.
+Found 5221 (72.6%) chimeras, 1928 (26.8%) non-chimeras,
+and 45 (0.6%) borderline sequences in 7194 unique sequences.
 Taking abundance information into account, this corresponds to
-67414 (10.4%) chimeras, 579980 (89.5%) non-chimeras,
-and 582 (0.1%) borderline sequences in 647976 total sequences.
+18288 (44.9%) chimeras, 22165 (54.5%) non-chimeras,
+and 248 (0.6%) borderline sequences in 40701 total sequences.
 
-[11/24/22 15:56:20]: 73,875 OTUs
-[11/24/22 15:56:20]: Cleaning up padding from OTUs
-[11/24/22 15:56:21]: Chimera Filtering (VSEARCH) using 16S DB
-[11/24/22 15:56:21]: vsearch --mindiv 1.0 --uchime_ref cluster16S_tmp/cluster16S.EE1.0.clean.otus.fa --db /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/16S.extracted.fa --nonchimeras cluster16S_tmp/cluster16S.EE1.0.uchime.otus.fa --threads 128
-[11/24/22 15:56:51]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+[11/25/22 15:50:12]: 1,928 OTUs
+[11/25/22 15:50:12]: Cleaning up padding from OTUs
+[11/25/22 15:50:12]: Chimera Filtering (VSEARCH) using 16S DB
+[11/25/22 15:50:12]: vsearch --mindiv 1.0 --uchime_ref cluster16S_tmp/cluster16S.EE1.0.clean.otus.fa --db /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/16S.extracted.fa --nonchimeras cluster16S_tmp/cluster16S.EE1.0.uchime.otus.fa --threads 128
+[11/25/22 15:50:14]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
 https://github.com/torognes/vsearch
 
 Reading file /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/16S.extracted.fa 100%
@@ -89,53 +89,53 @@ Masking 100%
 Counting k-mers 100%
 Creating k-mer index 100%
 Detecting chimeras 100%
-Found 1576 (2.1%) chimeras, 72173 (97.7%) non-chimeras,
-and 126 (0.2%) borderline sequences in 73875 unique sequences.
+Found 724 (37.6%) chimeras, 1188 (61.6%) non-chimeras,
+and 16 (0.8%) borderline sequences in 1928 unique sequences.
 Taking abundance information into account, this corresponds to
-1576 (2.1%) chimeras, 72173 (97.7%) non-chimeras,
-and 126 (0.2%) borderline sequences in 73875 total sequences.
+724 (37.6%) chimeras, 1188 (61.6%) non-chimeras,
+and 16 (0.8%) borderline sequences in 1928 total sequences.
 
-[11/24/22 15:56:51]: 72,173 OTUs passed, 1,702 ref chimeras
-[11/24/22 15:56:51]: Validating OTU orientation
-[11/24/22 15:56:51]: vsearch --usearch_global cluster16S_tmp/cluster16S.EE1.0.sort.fa --db cluster16S_tmp/cluster16S.EE1.0.uchime.otus.fa --sizein --id 0.97 --strand plus --uc cluster16S_tmp/orient.uc
-[11/24/22 15:58:47]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+[11/25/22 15:50:14]: 1,188 OTUs passed, 740 ref chimeras
+[11/25/22 15:50:14]: Validating OTU orientation
+[11/25/22 15:50:14]: vsearch --usearch_global cluster16S_tmp/cluster16S.EE1.0.sort.fa --db cluster16S_tmp/cluster16S.EE1.0.uchime.otus.fa --sizein --id 0.97 --strand plus --uc cluster16S_tmp/orient.uc
+[11/25/22 15:50:18]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
 https://github.com/torognes/vsearch
 
 Reading file cluster16S_tmp/cluster16S.EE1.0.uchime.otus.fa 100%
-31124239 nt in 72173 seqs, min 150, max 500, avg 431
+545604 nt in 1188 seqs, min 431, max 500, avg 459
 Masking 100%
 Counting k-mers 100%
 Creating k-mer index 100%
 Searching 100%
-Matching unique query sequences: 579135 of 647976 (89.38%)
-Matching total query sequences: 5922782 of 6400305 (92.54%)
+Matching unique query sequences: 15400 of 40701 (37.84%)
+Matching total query sequences: 89589 of 185211 (48.37%)
 
-[11/24/22 15:58:48]: vsearch --usearch_global cluster16S_tmp/cluster16S.EE1.0.uchime.otus.fa --db cluster16S_tmp/cluster16S.EE1.0.uchime.otus.fa --self --id 0.95 --strand both --userout cluster16S_tmp/orient-map.txt --userfields query+target+qstrand+id
-[11/24/22 15:59:18]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+[11/25/22 15:50:18]: vsearch --usearch_global cluster16S_tmp/cluster16S.EE1.0.uchime.otus.fa --db cluster16S_tmp/cluster16S.EE1.0.uchime.otus.fa --self --id 0.95 --strand both --userout cluster16S_tmp/orient-map.txt --userfields query+target+qstrand+id
+[11/25/22 15:50:19]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
 https://github.com/torognes/vsearch
 
 Reading file cluster16S_tmp/cluster16S.EE1.0.uchime.otus.fa 100%
-31124239 nt in 72173 seqs, min 150, max 500, avg 431
+545604 nt in 1188 seqs, min 431, max 500, avg 459
 Masking 100%
 Counting k-mers 100%
 Creating k-mer index 100%
 Searching 100%
-Matching unique query sequences: 47207 of 72173 (65.41%)
+Matching unique query sequences: 869 of 1188 (73.15%)
 
-[11/24/22 15:59:18]: Dropping 2 OTUs: OTU53744, OTU46170
-[11/24/22 15:59:19]: 72,171 OTUs validated (2 dropped)
-[11/24/22 15:59:19]: Mapping Reads to OTUs and Building OTU table
-[11/24/22 15:59:19]: vsearch --usearch_global cluster16S_tmp/cluster16S.orig.fa --strand plus --id 0.97 --db cluster16S_tmp/cluster16S.passed.otus.fa --uc cluster16S_tmp/cluster16S.EE1.0.mapping.uc --otutabout cluster16S_tmp/cluster16S.EE1.0.otu_table.txt --threads 128
-[11/24/22 16:49:05]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+[11/25/22 15:50:19]: Dropping 0 OTUs: 
+[11/25/22 15:50:19]: 1,188 OTUs validated (0 dropped)
+[11/25/22 15:50:19]: Mapping Reads to OTUs and Building OTU table
+[11/25/22 15:50:19]: vsearch --usearch_global cluster16S_tmp/cluster16S.orig.fa --strand plus --id 0.97 --db cluster16S_tmp/cluster16S.passed.otus.fa --uc cluster16S_tmp/cluster16S.EE1.0.mapping.uc --otutabout cluster16S_tmp/cluster16S.EE1.0.otu_table.txt --threads 128
+[11/25/22 15:52:41]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
 https://github.com/torognes/vsearch
 
 Reading file cluster16S_tmp/cluster16S.passed.otus.fa 100%
-31123861 nt in 72171 seqs, min 150, max 500, avg 431
+545604 nt in 1188 seqs, min 431, max 500, avg 459
 Masking 100%
 Counting k-mers 100%
 Creating k-mer index 100%
 Searching 100%
-Matching unique query sequences: 9500907 of 13607911 (69.82%)
+Matching unique query sequences: 233948 of 2112118 (11.08%)
 Writing OTU table (classic) 100%
 
-[11/24/22 16:49:07]: 9,500,907 reads mapped to OTUs (70%)
+[11/25/22 15:52:41]: 233,948 reads mapped to OTUs (11%)

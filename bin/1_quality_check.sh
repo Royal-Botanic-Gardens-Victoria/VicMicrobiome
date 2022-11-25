@@ -21,21 +21,21 @@ mkdir ../output/16S/fastqc_report
 
 
 # Analyse ITS reads (2 runs)
-for f in ../data/fastqc/ITS/bpa_10ad26d2_20221114T0127/*R1.fastq.gz ../data/ITS/bpa_10ad26d2_20221114T0127/*R2.fastq.gz;
+for f in ../data//ITS/fastq/bpa_10ad26d2_20221114T0127/*R1.fastq.gz ../data/ITS/bpa_10ad26d2_20221114T0127/*R2.fastq.gz;
 do fastqc $f --outdir=../output/ITS/fastqc_report;
 done
 
-for f in ../data/fastqc/ITS/bpa_4f999bb9_20221114T0101/*R1.fastq.gz ../data/ITS/bpa_4f999bb9_20221114T0101/*R2.fastq.gz;
+for f in ../data//ITS/fastq//bpa_4f999bb9_20221114T0101/*R1.fastq.gz ../data/ITS/bpa_4f999bb9_20221114T0101/*R2.fastq.gz;
 do fastqc $f --outdir=../output/ITS/fastqc_report;
 done
 
 
 # Analyse 16S reads (2 runs)
-for f in ../data/fastqc/16S/bpa_761e3497_20221114T0152/*R1.fastq.gz ../data/16S/bpa_761e3497_20221114T0152/*R2.fastq.gz;
+for f in ../data/16S/fastq/bpa_761e3497_20221114T0152/*R1.fastq.gz ../data/16S/bpa_761e3497_20221114T0152/*R2.fastq.gz;
 do fastqc $f --outdir=../output/16S/fastqc_report;
 done
 
-for f in ../data/fastqc/16S/bpa_76ac789f_20221114T0153/*R1.fastq.gz ../data/16S/bpa_76ac789f_20221114T0153/*R2.fastq.gz;
+for f in ../data/16S/fastq/bpa_76ac789f_20221114T0153/*R1.fastq.gz ../data/16S/bpa_76ac789f_20221114T0153/*R2.fastq.gz;
 do fastqc $f --outdir=../output/16S/fastqc_report;
 done
 
