@@ -1,0 +1,48 @@
+[11/25/22 16:18:35]: /opt/miniconda3/miniconda3/envs/amptk/bin/amptk taxonomy -i ../data/ITS/amptk/filterITS.final.txt -f ../data/ITS/amptk/filterITS.filtered.otus.fa -o taxonomyITS -m ../data/ITS/amptk/mapping_file_ITS.txt -d ITS1 --tax_filter Fungi
+
+[11/25/22 16:18:35]: OS: Ubuntu 18.10, 128 cores, ~ 1052 GB RAM. Python: 3.9.10
+[11/25/22 16:18:35]: Python Modules: numpy v1.22.2, pandas v1.4.0, matplotlib v3.5.1, psutil v5.9.0, natsort v8.1.0, biopython v1.79, edlib v1.3.9, biom-format v2.1.10
+[11/25/22 16:18:35]: AMPtk v1.5.4, VSEARCH v2.21.1
+[11/25/22 16:18:35]: Loading FASTA Records
+[11/25/22 16:18:35]: 17,991 OTUs
+[11/25/22 16:18:35]: Global alignment OTUs with usearch_global (VSEARCH) against ITS.udb
+[11/25/22 16:18:35]: vsearch --usearch_global ../data/ITS/amptk/filterITS.filtered.otus.fa --db /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/ITS.udb --userout taxonomyITS.usearch.txt --id 0.7 --strand both --output_no_hits --maxaccepts 500 --top_hits_only --userfields query+target+id --notrunclabels --threads 128
+[11/25/22 16:20:39]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+https://github.com/torognes/vsearch
+
+Reading UDB file /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/ITS.udb 100%
+Reorganizing data in memory 100%
+Creating bitmaps 100%
+Parsing abundances 100%
+842996461 nt in 1389964 seqs, min 100, max 6778, avg 606
+Searching 100%
+Matching unique query sequences: 16215 of 17991 (90.13%)
+
+[11/25/22 16:20:39]: Classifying OTUs with SINTAX (VSEARCH)
+[11/25/22 16:20:39]: vsearch --sintax ../data/ITS/amptk/filterITS.filtered.otus.fa --db /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/ITS1_SINTAX.udb --tabbedout taxonomyITS.sintax.txt -sintax_cutoff 0.8 --threads 128 --notrunclabels
+[11/25/22 16:20:59]: vsearch v2.21.1_linux_x86_64, 1003.6GB RAM, 128 cores
+https://github.com/torognes/vsearch
+
+Reading UDB file /opt/miniconda3/miniconda3/envs/amptk/lib/python3.9/site-packages/amptk/DB/ITS1_SINTAX.udb 100%
+Reorganizing data in memory 100%
+Creating bitmaps 100%
+Parsing abundances 100%
+38210608 nt in 140785 seqs, min 100, max 2763, avg 271
+Classifying sequences 100%
+Classified 12273 of 17991 sequences (68.22%)
+
+[11/25/22 16:20:59]: SINTAX results parsed, resulting in 12,189 taxonomy predictions
+[11/25/22 16:21:04]: Global alignment results parsed, resulting in 17,991 taxonomy predictions
+[11/25/22 16:21:05]: Combined OTU taxonomy dictionary contains 17,991 taxonomy predictions
+[11/25/22 16:21:05]: Appending taxonomy to OTU table and OTUs
+[11/25/22 16:21:06]: Found 2296 OTUs not matching Fungi, writing 15695 Fungi hits to taxonomy OTU table
+[11/25/22 16:21:08]: Generating phylogenetic tree (MAFFT/FastTree)
+[11/25/22 16:21:08]: mafft ../data/ITS/amptk/filterITS.filtered.otus.fa
+[11/25/22 16:44:13]: fasttree -nt taxonomyITS.mafft.fasta
+[11/25/22 16:44:14]: Taxonomy finished: taxonomyITS.taxonomy.txt
+[11/25/22 16:44:14]: Classic OTU table with taxonomy: taxonomyITS.otu_table.taxonomy.txt
+[11/25/22 16:44:15]: biom convert -i taxonomyITS.otu_table.tmp -o taxonomyITS.biom.tmp --table-type OTU table --to-json
+[11/25/22 16:44:19]: biom add-metadata -i taxonomyITS.biom.tmp -o taxonomyITS.biom --observation-metadata-fp taxonomyITS.qiime.taxonomy.txt -m ../data/ITS/amptk/mapping_file_ITS.txt --sc-separated taxonomy --output-as-json
+[11/25/22 16:44:23]: BIOM OTU table created: taxonomyITS.biom
+[11/25/22 16:44:23]: OTUs with taxonomy: taxonomyITS.otus.taxonomy.fa
+[11/25/22 16:44:23]: OTU phylogeny: taxonomyITS.tree.phy
