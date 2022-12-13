@@ -1,4 +1,4 @@
-# Sequence quality
+# Quality check of raw sequences
 
 The number of reads varied greatly between samples, both for ITS (fungi) and 16S (bacteria). This is likely to induce biases against rare taxa in the samples with fewer reads.
 
@@ -22,7 +22,7 @@ The quality of 16S reads (bacteria) was below the 1% error rate for up to 2/3 of
 **Phred score = 20: likelihood of finding 1 incorrect base call among 100 bases.*
 
 
-# Denoising
+# Read quality filtering
 
 ### ITS (fungi)
 
@@ -41,8 +41,8 @@ Two approaches are commonly used to identifiy microbial diversity from sequence 
 # Suggestions 
 
 Improve sequence quality
-- Generate amplicons with a size that corresponds to the sequence fragment (ITS1 or ITS2) so that reads can be merged acurately
+- In order to accurately merge ITS reads, it is essential to generate ITS1 and ITS2 amplicons separately so that their lenght corresponds to the read size of the sequencing platform (300 bp for Illumina MiSeq 2x300).
 - Bench work (equimolar concentrations between samples, spike-in?)
 
 Reduce index bleed
-- Do not allow any error when reading the barcode during demultiplexing (here two mismatched were allowed)
+- Do not allow any error when reading the barcode during demultiplexing (here two mismatches were allowed)
