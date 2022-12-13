@@ -14,6 +14,7 @@ Program used:
 - [MultiQC v1.13](https://multiqc.info/)
 - [Trimmomatic v0.39](http://www.usadellab.org/cms/?page=trimmomatic)
 - [AMPtk v1.5.4](https://github.com/nextgenusfs/amptk)
+- [R v4.0.3](https://www.r-project.org/) 
 
 [`/data`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/data) contains the data and metadata associated to the project, apart from large fastq files (raw data).
 

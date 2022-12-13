@@ -37,12 +37,23 @@ The 16S primers 27F/519R generated an amplicon of 450-490 bp per sample after me
 ### Note
 Two approaches are commonly used to identifiy microbial diversity from sequence data: 1) amplicon sequence variants (ASV) represent unique sequences, and 2) operational taxonomic units (OTU) result from clustering sequences at a similarity threshold, usually 97%. The ASV approach has been used extensively to study bacterial communities but are expected to perform poorly for fungal groups that commonly exhibit multiple variants of rRNA gene and ITS copies per genome [(Tedersoo et al. 2022)](https://onlinelibrary.wiley.com/doi/10.1111/mec.16460). ASV approaches therefore tend to overestimate richness of common fungal species (due to haplotype variation) but underestimate richness of rare species (by removing rare variants). Because community composition is  driven by abundant taxa, the results are similar betwen ASV and OTU approaches.
 
+### ITS (Fungi)
 
-# Suggestions 
+19,030,426 reads passed quality filtering and clustered into 17,991 OTUs. 2296 OTUs did not match Fungi, giving a total of 15,695 fungal OTUs.
+
+### 16S (Bacteria)
+
+Only 232,938 reads passed quality filtering and clustered into 1,040 bacterial OTUs.
+
+
+
+# Recommendations
 
 Improve sequence quality
-- In order to accurately merge ITS reads, it is essential to generate ITS1 and ITS2 amplicons separately so that their lenght corresponds to the read size of the sequencing platform (300 bp for Illumina MiSeq 2x300).
-- Bench work (equimolar concentrations between samples, spike-in?)
+- In order to accurately merge ITS reads, it is important to generate ITS1 and ITS2 amplicons separately so that their lenght corresponds to the read size of the sequencing platform (300 bp for Illumina MiSeq 2x300).
+- If the quality check of the run indicates that a large proportion of reads is below the 1% error rate, an extra quality filter (for example using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)) is recommended to filter raw reads before denoising/clustering. This greatly reduces the risk of mistaking sequencing error for genetic diversity.  
+
+- Bench work needs to be optimized (equimolar concentrations between samples, spike-in?)
 
 Reduce index bleed
-- Do not allow any error when reading the barcode during demultiplexing (here two mismatches were allowed)
+- Do not allow any error when reading the barcode during demultiplexing (here two mismatches were allowed).
