@@ -21,8 +21,6 @@ Icon\r
 *.fastqc.zip
 *.fq
 *.fq.gz
-*.fa
-*.fasta
 
 # Directories with raw sequences
 data/*/fastq/
