@@ -61,6 +61,6 @@ Only 232,938 reads passed quality filtering and clustered into 1,040 bacterial O
 - We recommend to check the quality of each run beforehand and apply extra quality filters (for example using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)) to filter out reads below the 1% error rate before denoising/clustering. This greatly reduces the risk of mistaking sequencing error for genetic diversity.  
 
 ### Reduce index bleed
-- Do not allow any error when reading the barcode during demultiplexing (the Australian Microbiome Initative currently allows two mismatches).
+- Do not allow any error when reading the barcode during demultiplexing (the Australian Microbiome Initative currently allows two barcode mismatches).
 
-- Index bleed can overestimate overall diversity of a dataset by more than x10. We therefore recommand to filter low abundance OTUs based on the OTU count per sample (instead of overall count) and parametrize these thresholds based on mock community samples.
+- Index bleed can inflate the overall diversity of a dataset by more than x10. We therefore recommand to filter out low abundance OTUs based on the OTU count per sample (instead of overall count) and parametrize these filters based on mock community samples.
