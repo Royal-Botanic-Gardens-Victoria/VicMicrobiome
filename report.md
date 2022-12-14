@@ -41,11 +41,9 @@ Two approaches are commonly used to identifiy microbial diversity from sequence 
 
 19,030,426 reads passed quality filtering and clustered into 17,991 OTUs. 2296 OTUs did not match Fungi, giving a total of 15,695 fungal OTUs generated with [amptk](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/4a_amptk_ITS.sh).
 
-After filtering for index bleed and contaminants reads from negative control samples using [R](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/5a_filter_otu_table_ITS.R), as well as removing OTUs from other samples that were included in the runs, we obtained 2794 OTUs. 
+The [mock community samples](https://www.atcc.org/products/msa-1010) had 78 to >200 OTUs instead of the expected 10, indicating a high index bleed in both runs. We therefore filtered out low abundance OTUs (>0.5% of total read count per sample) in [R](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/R_functions/filter_OTU_per_sample.R) to obtain the adequate number of OTUs in the mock community samples. Our approach emphasizes how index bleed can inflate the overall diversity of a dataset by more than x10. It is therefore important to filter out low abundance OTUs based on the OTU count per sample, using mock community controls to parametrize these filters.
 
-The [mock community samples](https://www.atcc.org/products/msa-1010) indicated that index bleed was very high in both runs, with 78 to >200 OTUs generated instead of the expected 10. Our index bleed filter (0.5% of total read count per sample) reduced the OTU count of these samples to 8 or 9, which is slightly conservative comparatively to the 10 OTUs expected. Our approach nevertheless emphasizes that index bleed can overestimate overall diversity by more than x10. These low abundance OTUs therefore need to be filtered out based on the OTU count per sample.
-
-Despite of the extensive sampling, 1570 OTUs (56%) were present in only one sample. It is therefore probable that our dataset only detected a portion of the fungal diversity occuring in Victorian soils.   
+After filtering for index bleed and contaminants reads from negative control samples using [R](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/5a_filter_otu_table_ITS.R), as well as removing OTUs from other samples that were included in the runs, we obtained a final [OTU table](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/OTU_table_ITS.csv) with 2794 OTUs. Out of these, 1570 OTUs (56%) were present in only one sample. It is therefore probable that our dataset only detected a portion of the fungal diversity occuring in Victorian soils despite of the extensive sampling.   
 
 ### 16S (Bacteria)
 
@@ -56,11 +54,13 @@ Only 232,938 reads passed quality filtering and clustered into 1,040 bacterial O
 # Recommendations
 
 Improve sequence quality
-- In order to accurately merge ITS reads, it is important to generate ITS1 and ITS2 amplicons separately so that their lenght corresponds to the read size of the sequencing platform (300 bp for Illumina MiSeq 2x300).
-- If the quality check of the run indicates that a large proportion of reads is below the 1% error rate, an extra quality filter (for example using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)) is recommended to filter raw reads before denoising/clustering. This greatly reduces the risk of mistaking sequencing error for genetic diversity.  
+- In order to accurately merge ITS reads, it is important to generate and sequence ITS1 and ITS2 amplicons separately so that their lenght corresponds to the read size of the sequencing platform (300 bp for Illumina MiSeq 2x300).
 
-- Bench work needs to be optimized (equimolar concentrations between samples, spike-in?)
+- Bench work needs to be optimized (equimolar concentrations between samples, adjusting PhiX spike-in) to improve the general quality of raw sequences
+
+- We recommend to check the quality of each run beforehand and apply extra quality filters (for example using [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)) to filter out reads below the 1% error rate before denoising/clustering. This greatly reduces the risk of mistaking sequencing error for genetic diversity.  
 
 Reduce index bleed
-- Do not allow any error when reading the barcode during demultiplexing (here two mismatches were allowed).
-- Index bleed can overestimate overall diversity of a dataset by more than x10. We therefore recommand to filter low abundance OTUs based on the OTU count per sample.
+- Do not allow any error when reading the barcode during demultiplexing (the Australian Microbiome Initative currently allows two mismatches).
+
+- Index bleed can overestimate overall diversity of a dataset by more than x10. We therefore recommand to filter low abundance OTUs based on the OTU count per sample (instead of overall count) and parametrize these thresholds based on mock community samples.
