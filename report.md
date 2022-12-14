@@ -39,7 +39,13 @@ Two approaches are commonly used to identifiy microbial diversity from sequence 
 
 ### ITS (Fungi)
 
-19,030,426 reads passed quality filtering and clustered into 17,991 OTUs. 2296 OTUs did not match Fungi, giving a total of 15,695 fungal OTUs.
+19,030,426 reads passed quality filtering and clustered into 17,991 OTUs. 2296 OTUs did not match Fungi, giving a total of 15,695 fungal OTUs generated with [amptk](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/4a_amptk_ITS.sh).
+
+After filtering for index bleed and contaminants reads from negative control samples using [R](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/5a_filter_otu_table_ITS.R), as well as removing OTUs from other samples that were included in the runs, we obtained 2794 OTUs. 
+
+The [mock community samples](https://www.atcc.org/products/msa-1010) indicated that index bleed was very high in both runs, with 78 to >200 OTUs generated instead of the expected 10. Our index bleed filter (0.5% of total read count per sample) reduced the OTU count of these samples to 8 or 9, which is slightly conservative comparatively to the 10 OTUs expected. Our approach nevertheless emphasizes that index bleed can overestimate overall diversity by more than x10. These low abundance OTUs therefore need to be filtered out based on the OTU count per sample.
+
+Despite of the extensive sampling, 1570 OTUs (56%) were present in only one sample. It is therefore probable that our dataset only detected a portion of the fungal diversity occuring in Victorian soils.   
 
 ### 16S (Bacteria)
 
@@ -57,3 +63,4 @@ Improve sequence quality
 
 Reduce index bleed
 - Do not allow any error when reading the barcode during demultiplexing (here two mismatches were allowed).
+- Index bleed can overestimate overall diversity of a dataset by more than x10. We therefore recommand to filter low abundance OTUs based on the OTU count per sample.
