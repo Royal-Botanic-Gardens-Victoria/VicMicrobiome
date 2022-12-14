@@ -55,25 +55,18 @@ as.data.frame(otu_table(amptk_filtered_nc))$Run1a.No   ### check that all reads 
 # Function to remove OTUs with low percentage count per sample (index bleed)
 source("R_functions/filter_OTU_per_sample.R")
 
-amptk_filtered_bleed = filter_OTU_per_sample(phyloseq = amptk_filtered_nc, threshold = 0.0005)   ### Note: 0.05% = 0.0005
+amptk_filtered_bleed = filter_OTU_per_sample(object = amptk_filtered_nc, threshold = 0.5)   ### Filter out OTU count<0.05%
 
-# Check results
+
+# Check results: mock samples have 8-9 OTUs instead of 10 (slightly conservative)
+estimate_richness(amptk, measures = "Observed")
 estimate_richness(amptk_filtered_nc, measures = "Observed")
-estimate_richness(amptk_filtered_bleed, measures = "Observed") # check results
-
-# Check number of OTus in mock samples
-binary_table=decostand(otu_table(amptk_filtered_bleed),method="pa")
-
-binary = phyloseq(otu_table(binary_table, taxa_are_rows=TRUE), 
-                      sample_data(amptk_filtered_nc), 
-                      tax_table(tax_table(amptk_filtered_nc)))
-sample_sums(binary) 
+estimate_richness(amptk_filtered_bleed, measures = "Observed")
 
 
 ### 5. Remove control samples (and extra samples from other studies)
 
 amptk_filtered = subset_samples(amptk_filtered_bleed, !(Sample_type %in% c("Control","NA")))
-amptk_filtered = subset_samples(amptk_filtered_bleed, !(Sample_type %in% "NA"))
 
 amptk_filtered = prune_taxa(taxa_sums(amptk_filtered) > 0, amptk_filtered)   ### remove OTUs that are no longer present
 any(taxa_sums(amptk_filtered) == 0)
@@ -99,7 +92,6 @@ otu_table(mc1.rel) = ceiling(otu_table(mc1.rel, "matrix"))   ### transform to ne
 
 # Relative abundance (in %)
 mc1.prc = transform_sample_counts(amptk_filtered, function(x) 100 * x/sum(x))
-otu_table(mc1.prc)
 
 
 ### FINAL OTU TABLES OBTAINED FOR DOWNSTREAM ANALYSES
