@@ -1,0 +1,51 @@
+"","Kingdom","Phylum","Class","Order","Family","Genus","Species","count"
+"OTU1","Fungi","Mucoromycota","Umbelopsidomycetes","Umbelopsidales","Umbelopsidaceae","Umbelopsis","Umbelopsis dimorpha",96
+"OTU2","Fungi","Ascomycota","Sordariomycetes","Hypocreales","Nectriaceae","Fusarium","Fusarium oxysporum",77
+"OTU11","Fungi","Mortierellomycota","Mortierellomycetes","Mortierellales","Mortierellaceae","Mortierella","Mortierella elongata",74
+"OTU4","Fungi","Basidiomycota","Tremellomycetes","Tremellales","Trimorphomycetaceae","Saitozyma","Saitozyma podzolica",70
+"OTU10","Fungi","Mortierellomycota","Mortierellomycetes","Mortierellales","Mortierellaceae","Mortierella","Mortierella humilis",50
+"OTU34","Fungi","Ascomycota","Leotiomycetes","Helotiales",NA,NA,NA,50
+"OTU9","Fungi","Basidiomycota","Tremellomycetes","Filobasidiales","Piskurozymaceae","Solicoccozyma","Solicoccozyma phenolica",42
+"OTU96","Fungi","Ascomycota","Leotiomycetes","Thelebolales","Pseudeurotiaceae","Geomyces",NA,39
+"OTU38","Fungi","Ascomycota","Eurotiomycetes","Eurotiales","Aspergillaceae","Penicillium",NA,36
+"OTU17","Fungi","Ascomycota","Sordariomycetes","Hypocreales","Hypocreaceae","Trichoderma",NA,34
+"OTU136","Fungi","Basidiomycota","Geminibasidiomycetes","Geminibasidiales","Geminibasidiaceae","Geminibasidium",NA,34
+"OTU364","Fungi","Ascomycota","Eurotiomycetes","Chaetothyriales",NA,NA,NA,33
+"OTU41","Fungi","Mortierellomycota","Mortierellomycetes","Mortierellales","Mortierellaceae","Mortierella","Mortierella alpina",32
+"OTU42","Fungi","Basidiomycota","Tremellomycetes","Trichosporonales","Trichosporonaceae",NA,NA,29
+"OTU2445","Fungi","Mortierellomycota","Mortierellomycetes","Mortierellales","Mortierellaceae","Mortierella",NA,29
+"OTU27","Fungi","Ascomycota","Dothideomycetes","Pleosporales",NA,NA,NA,28
+"OTU235","Fungi","Ascomycota","Leotiomycetes","Helotiales","","Leohumicola",NA,28
+"OTU60","Fungi","Ascomycota",NA,NA,NA,NA,NA,27
+"OTU128","Fungi","Ascomycota","Dothideomycetes","Capnodiales",NA,NA,NA,27
+"OTU25","Fungi","Basidiomycota","Agaricomycetes","Atheliales","Tylosporaceae","Amphinema",NA,24
+"OTU74","Fungi","Ascomycota",NA,NA,NA,NA,NA,22
+"OTU80","Fungi","Ascomycota","Dothideomycetes","Mytilinidales","Gloniaceae","Cenococcum",NA,22
+"OTU104","Fungi","Ascomycota","Archaeorhizomycetes",NA,NA,NA,NA,22
+"OTU170","Fungi","Ascomycota","Leotiomycetes","Helotiales","Hyaloscyphaceae","Hyaloscypha",NA,22
+"OTU264","Fungi","Mucoromycota","Umbelopsidomycetes","Umbelopsidales","Umbelopsidaceae","Umbelopsis","Umbelopsis vinacea",22
+"OTU321","Fungi","Ascomycota","Sordariomycetes","Hypocreales","Nectriaceae","Ilyonectria","Ilyonectria mors-panacis",21
+"OTU183","Fungi","Ascomycota","Sordariomycetes","Hypocreales",NA,NA,NA,20
+"OTU710","Fungi","Basidiomycota","Agaricomycetes","Russulales","Russulaceae","Lactarius","Lactarius umerensis",20
+"OTU26","Fungi","Basidiomycota","Microbotryomycetes","Leucosporidiales",NA,NA,NA,19
+"OTU174","Fungi","Ascomycota","Eurotiomycetes","Eurotiales","Trichocomaceae","Sagenomella","Sagenomella diversispora",18
+"OTU40","Fungi","Basidiomycota","Agaricomycetes","Atheliales",NA,NA,NA,17
+"OTU64","Fungi","Ascomycota","Leotiomycetes","Thelebolales","Pseudeurotiaceae","Pseudeurotium","Pseudeurotium bakeri",17
+"OTU82","Fungi","Ascomycota","Sordariomycetes","Hypocreales","Clavicipitaceae","Metarhizium",NA,17
+"OTU109","Fungi","Basidiomycota","Agaricomycetes","Thelephorales","Thelephoraceae",NA,NA,17
+"OTU111","Fungi","Basidiomycota","Tremellomycetes","Filobasidiales","Piskurozymaceae","Solicoccozyma","Solicoccozyma terricola",17
+"OTU112","Fungi","Ascomycota","Sordariomycetes","Hypocreales","Bionectriaceae",NA,NA,17
+"OTU30","Fungi","Basidiomycota","Agaricomycetes","Hymenochaetales","Rickenellaceae","Rickenella",NA,16
+"OTU164","Fungi","Ascomycota","Pezizomycetes","Pezizales","Pezizaceae","Ruhlandiella",NA,16
+"OTU266","Fungi","Ascomycota","Sordariomycetes","Xylariales","Xylariaceae","Ascotricha","Ascotricha erinacea",16
+"OTU363","Fungi","Ascomycota","Dothideomycetes","Pleosporales",NA,NA,NA,16
+"OTU71","Fungi","Basidiomycota","Agaricomycetes","Agaricales","Hydnangiaceae",NA,NA,15
+"OTU218","Fungi","Ascomycota","Dothideomycetes","Capnodiales",NA,NA,NA,15
+"OTU338","Fungi","Ascomycota","Sordariomycetes","Sordariales","Chaetomiaceae","Chaetomium",NA,15
+"OTU375","Fungi","Basidiomycota","Agaricomycetes","Agaricales","Tricholomataceae","Mycena",NA,15
+"OTU5230","Fungi","Basidiomycota","Agaricomycetes","Russulales","Russulaceae","Russula",NA,15
+"OTU77","Fungi","Ascomycota","Pezizomycetes","Pezizales","Pezizaceae",NA,NA,14
+"OTU211","Fungi","Basidiomycota","Tremellomycetes","Trichosporonales","Trichosporonaceae","Apiotrichum",NA,14
+"OTU229","Fungi","Basidiomycota","Agaricomycetes","Russulales","Russulaceae","Russula",NA,14
+"OTU303","Fungi","Ascomycota","Pezizomycetes","Pezizales","Pezizaceae",NA,NA,14
+"OTU68","Fungi","Basidiomycota","Agaricomycetes","Agaricales","Cortinariaceae","Cortinarius",NA,13

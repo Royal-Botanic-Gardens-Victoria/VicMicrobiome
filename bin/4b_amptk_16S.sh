@@ -85,7 +85,7 @@ mv filter16S* ../data/16S/amptk
 # --add2db, Add FASTA files to DB on the fly.
 # --tax_filter, Remove OTUs that do not match filter, i.e. Fungi to keep only fungi.
 
-amptk taxonomy -i ../data/16S/amptk/filter16S.final.txt -f ../data/16S/amptk/filter16S.filtered.otus.fa -o taxonomy16S -m ../data/16S/amptk/mapping_file_16S.txt -d 16S --tax_filter Bacteria
+amptk taxonomy -i ../data/16S/amptk/filter16S.final.txt -f ../data/16S/amptk/filter16S.filtered.otus.fa -o taxonomy16S -m ../data/16S/mapping_file_16S.txt -d 16S --tax_filter Bacteria
 
 # Move output files to new folder "taxonomy"
 mv taxonomy16S* ../data/16S/amptk

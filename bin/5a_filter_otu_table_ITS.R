@@ -7,7 +7,7 @@
 
 ### 2. Load the R packages needed
 
-packages = c("ggplot2","phyloseq","dplyr","tidyr","vegan")
+packages = c("ggplot2","phyloseq","vegan","dplyr","tidyr")
 lib = lapply(packages, require, character.only = TRUE)
 theme_set(theme_bw())
 
@@ -21,10 +21,34 @@ head(otu_table(amptk))  ### OTU table
 head(tax_table(amptk))   ### Taxonomy table
 head(sample_data(amptk))   ### Sample table (meta-data)
 
-# Change names of taxonomic rank names in taxonomy table
+# Rename taxonomic rank names in taxonomy table
 rank_names(amptk)
 colnames(tax_table(amptk)) = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")
 rank_names(amptk)
+
+# Clean names in taxonomy table
+tax_table(amptk)
+tax_table(amptk)[, colnames(tax_table(amptk))] <- gsub(tax_table(amptk)[, colnames(tax_table(amptk))], pattern = "[a-z]__", replacement = "")
+tax_table(amptk)
+
+# Rename sample table variables (too long or to avoid weird characters)
+colnames(sample_data(amptk))[c(43,65,122,148,160,183,217,221)]
+colnames(sample_data(amptk))[c(43,65,122,148,160,183,217,221)] = c("Ammonium_nitrogen", 
+                                                                 "Clay_percent", 
+                                                                 "Gravel_percent",
+                                                                 "Nitrate_nitrogen",
+                                                                 "Phosphorus_Colwell",
+                                                                 "Silt_percent",
+                                                                 "Dom_grasses_percent",
+                                                                 "Dom_trees_percent")
+
+# Correct entries in sample data (Gravel %)
+sample_data(amptk)$Gravel_percent
+sample_data(amptk)$Gravel_percent[sample_data(amptk)$Gravel_percent == "0"] <- "0-5"
+sample_data(amptk)$Gravel_percent[sample_data(amptk)$Gravel_percent == "5"] <- "0-5"
+sample_data(amptk)$Gravel_percent[sample_data(amptk)$Gravel_percent == "10-May"] <- "5-10"
+sample_data(amptk)$Gravel_percent[sample_data(amptk)$Gravel_percent == "15-Oct"] <- "10-15"
+sample_data(amptk)$Gravel_percent
 
 
 ### 4. OTU Filtering
@@ -70,10 +94,15 @@ amptk_filtered = subset_samples(amptk_filtered_bleed, !(Sample_type %in% c("Cont
 
 amptk_filtered = prune_taxa(taxa_sums(amptk_filtered) > 0, amptk_filtered)   ### remove OTUs that are no longer present
 any(taxa_sums(amptk_filtered) == 0)
-amptk_filtered
 
 
-### 6. Data transformation
+### 6. Export filtered OTU and taxonomy table
+
+write.csv(otu_table(amptk_filtered), "../output/ITS/OTU_table_ITS.csv", row.names=TRUE)
+write.csv(tax_table(amptk_filtered), "../output/ITS/Taxonomy_table_ITS.csv", row.names=TRUE)
+
+
+### 7. Data transformation
 
 # Presence/absence matrix
 binary_table=decostand(otu_table(amptk_filtered),method="pa")
@@ -99,3 +128,4 @@ mc1.binary
 mc2.binary
 mc1.rel
 mc1.prc
+
