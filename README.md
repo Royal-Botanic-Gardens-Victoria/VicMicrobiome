@@ -21,7 +21,9 @@ Program used:
 [`/output`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/output) contains the results and figures generated from the scripts:
 - FastQC_reports: Read quality check for each locus
 
-[`report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/report.md) details the advances of the project, discuss the results and provide suggestions for future studies. 
+[`techinical_report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/technical_report.md) discuss each step of the pipeline used to generate the OTU per site table and provide suggestions for future studies.
+
+[`diversity_report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/diversity_report.md) provide some baseline diversity analyses and briefly discuss the results.
 
 
 # Background information
