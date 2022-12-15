@@ -37,6 +37,7 @@ As expected, Ascomycota and Basidiomycota were the most species-rich fungal phyl
 
 
 **FIGURE 1. OTU frequency of each phylum per vegetation type**
+
 ![](output/ITS/R_plots/phylum_per_vegtype.png)
 
 
@@ -46,14 +47,17 @@ Despite some differences in the frequency of the [20 most frequent fungal genera
 
 
 **FIGURE 2. OTU frequency of the top 20 fungal genera per vegetation type**
+
 ![](output/ITS/R_plots/genus_per_vegtype.png)
 
 
 **FIGURE 3. Species richness per vegetation type**
+
 ![](output/ITS/R_plots/richness_per_vegtype.png)
 
 
 **FIGURE 4. Correlation of species richness with pH**
+
 ![](output/ITS/R_plots/richness_per_pH.png)
 
 
@@ -66,4 +70,5 @@ All the environmental variables listed above correlated significantly with the o
 
 
 **FIGURE 5. NMDS of the overall fungal community composition for each significant environmental variable (Pvalue < 0.001)**
+
 ![](output/ITS/R_plots/NMDS_plots.png)
