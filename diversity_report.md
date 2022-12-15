@@ -41,7 +41,7 @@ As expected, Ascomycota and Basidiomycota were the most species-rich fungal phyl
 ![](output/ITS/R_plots/phylum_per_vegtype.png)
 
 
-We tested for the correlation of fungal species richness with environmental variables using generalized linear models with a negative binomial distribution.
+We tested for the correlation of fungal species richness with environmental variables using Chi square tests and generalized linear models with a negative binomial distribution.
 
 Despite some differences in the frequency of the [20 most frequent fungal genera](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/20_most_frequent_genera.csv) between vegetation types (Fig. 2), no significant differences in species richness was found between vegetation types (Fig. 3). Among all the variables tested, the only significant predictor of overall fungal richness was soil pH (Pvalue = 0.003, Fig. 4).
 
