@@ -7,7 +7,7 @@
 
 In this repository you can find scripts, data and output to analyse microbial communities (fungi and bacteria) from soil samples using eDNA meta-barcoding. 
 
-[`/bin`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/bin) contains documented bash and R scripts to quality-filter Illumina MiSeq 2x300 reads, generate OTUs, filter the OTU table, assign taxonomy and trophic mode (fungi), and analyze alpha and beta diversity. 
+[`/bin`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/bin) contains documented bash and R scripts to quality-filter Illumina MiSeq 2x300 reads, generate OTUs, filter the OTU table, assign taxonomy and trophic mode (fungi), and analyze alpha and beta diversity patterns. 
 
 Program used:
 - [FastQC v0.11.9](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
@@ -18,12 +18,16 @@ Program used:
 
 [`/data`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/data) contains the data and metadata associated to the project, apart from large fastq files (raw data).
 
-[`/output`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/output) contains the results and figures generated from the scripts:
-- FastQC_reports: Read quality check for each locus
+[`/output`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/output) contains the final tables and figures resulting from the scripts for each locus:
+- Sequence quality check (FastQC reports)
+- OTU table with raw count per sample
+- Taxonomy and reference sequences of OTUs
+- Tables with most frequent/abundant OTUs and fungal genera
+- Diversity plots
 
-[`techinical_report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/technical_report.md) discuss each step of the pipeline used to generate the OTU per site table and provide suggestions for future studies.
+[`techinical_report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/technical_report.md) discusses each step of the pipeline used to generate the OTU table and provide suggestions for future studies.
 
-[`diversity_report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/diversity_report.md) provide some baseline diversity analyses and briefly discuss the results.
+[`diversity_report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/diversity_report.md) provides some baseline diversity analyses and briefly discuss the results.
 
 
 # Background information

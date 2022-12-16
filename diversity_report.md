@@ -64,11 +64,11 @@ Despite some differences in the frequency of the [20 most frequent fungal genera
 # Community composition
 
 We tested for the correlation of fungal community composition with environmental variables by generating
-a Raup-Crick distance matrix (based on presence-absence of OTUs occuring in at least two samples) and fitting environmental vectors or factors onto the ordination with the `envfit` function. The ordination was visualized using non-metric multidimensional scaling (NMDS) and colour-coding each sample according to significant environmental predictors.
+a Raup-Crick distance matrix (based on presence-absence of OTUs occuring in at least two samples) and fitting environmental vectors or factors onto the ordination with the `envfit` function. The ordination was visualized using non-metric multidimensional scaling (NMDS) and samples were colour-coded according to significant environmental predictors.
 
 All the environmental variables listed above correlated significantly with the overall fungal community composition (Pvalue < 0.001), except for soil depth and % gravel (Fig. 5).
 
 
-**FIGURE 5. NMDS of the overall fungal community composition for each significant environmental variable (Pvalue < 0.001)**
+**FIGURE 5. NMDS of the overall fungal community composition with samples color-coded according to significant environmental variables (Pvalue < 0.001)**
 
 ![](output/ITS/R_plots/NMDS_plots.png)
