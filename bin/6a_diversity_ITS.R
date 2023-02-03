@@ -6,17 +6,41 @@
 
 ### 2. Load data and extra packages
 
-packages = c("MASS","cowplot")
+packages = c("MASS","cowplot","data.table")
 lib = lapply(packages, require, character.only = TRUE)
 
 source("5a_filter_otu_table_ITS.R")
+
 mc1.binary
 mc2.binary
 mc1.rel
 mc1.prc
+guild_table
 
 
-### 3. Overall diversity
+
+### 3. Filter OTUs by guild
+
+unique(guild_table$primary_lifestyle)
+
+list=row.names(guild_table)[which(guild_table$primary_lifestyle=="ectomycorrhizal")]
+ecm.binary=prune_taxa(list, mc1.binary)
+ecm.rel=prune_taxa(list, mc1.rel)
+
+glo.binary=subset_taxa(mc1.binary, Phylum=="Glomeromycota")
+glo.rel=subset_taxa(mc1.rel, Phylum=="Glomeromycota")
+
+list=row.names(guild_table)[which(guild_table$primary_lifestyle %like% "saprotroph")]   ### include all sapotroph sub-cathegories
+sap.binary=prune_taxa(list, mc1.binary)
+sap.rel=prune_taxa(list, mc1.rel)
+
+list=row.names(guild_table)[which(guild_table$primary_lifestyle=="plant_pathogen")]
+pat.binary=prune_taxa(list, mc1.binary)
+pat.rel=prune_taxa(list, mc1.rel)
+
+
+
+### 4. Overall diversity
 
 # List of 50 most frequent/abundant OTUS
 input=mc1.rel   ### mc1.binary for frequency, mc1.rel for relative abundance
@@ -50,9 +74,9 @@ write.csv(df, "../output/ITS/20_most_frequent_genera.csv", row.names=FALSE)   ##
 
 
 # Diversity plots 
-data = mc1.binary  ### phyloseq object to use
+data = ecm.binary  ### phyloseq object to use
 factor = "Type"  ### variable to plot
-tax = "Phylum"  ### taxonomic rank to use
+tax = "Family"  ### taxonomic rank to use
 
 p=plot_bar(data, x=factor, fill=tax, title = "") +
   geom_bar(stat="identity") +
@@ -60,12 +84,12 @@ p=plot_bar(data, x=factor, fill=tax, title = "") +
   ylab("OTU frequency")
 p
 
-png(file="../Output/ITS/R_plots/phylum_per_vegtype.png")  ### change file name accordingly
+png(file="../Output/ITS/R_plots/ecm_per_vegtype.png")  ### change file name accordingly
 p
 dev.off()
 
 
-### 3. Variables to test:
+### 5. Variables to test:
 
 # Depth
 # pH_solid_H2O
@@ -110,10 +134,25 @@ subset.mc2.binary = subset_samples(subset.mc2.binary, rownames(sample_data(subse
 subset.mc2.binary
 
 
-### 4. Species richness
+### 6. Species richness
 
-# Alpha diversity estimates
-diversity <-estimate_richness(subset.mc1.rel, measures=c("Observed", "Shannon"))
+# Select data (trophic modes)
+subset.mc1.rel
+
+list=row.names(guild_table)[which(guild_table$primary_lifestyle=="ectomycorrhizal")]
+ecm.subset.rel=prune_taxa(list, subset.mc1.rel)
+
+glo.subset.rel=subset_taxa(subset.mc1.rel, Phylum=="Glomeromycota")
+
+list=row.names(guild_table)[which(guild_table$primary_lifestyle %like% "saprotroph")]   ### include all saprotroph sub-cathegories
+sap.subset.rel=prune_taxa(list, subset.mc1.rel)
+
+list=row.names(guild_table)[which(guild_table$primary_lifestyle=="plant_pathogen")]
+pat.subset.rel=prune_taxa(list, subset.mc1.rel)
+
+
+# Alpha-diversity estimates
+diversity <-estimate_richness(ecm.subset.rel, measures=c("Observed", "Shannon"))
 
 # Add environmental variables
 env <- c("Depth","Type","State","Dom_grasses_percent","Dom_trees_percent",
@@ -158,11 +197,12 @@ car::vif(all)  ## check for multi-colinearity of factors
 dropterm(all, test = "Chisq")  ## significant predictors = pH !!    
                 
 # Plot
-p = ggplot(data, aes(x=pH_solid_H2O, y=Observed)) + geom_point() +
+p = ggplot(data, aes(x=Dom_trees_percent, y=Observed)) + geom_point() +
   geom_smooth(method=lm) +
   ylab("Number of OTUs per sample") +
-  xlab("pH (solid H20)")
+  xlab("%  Dominant trees")
 p
+
 
 p = ggplot(data, aes(x=Type, y=Observed)) + geom_boxplot() +
   ylab("Number of OTUs per sample") +
@@ -170,15 +210,41 @@ p = ggplot(data, aes(x=Type, y=Observed)) + geom_boxplot() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 p
 
-png(file="../Output/ITS/R_plots/richness_per_vegtype.png")  ## export graphics (changing names accordingly)
+png(file="../Output/ITS/R_plots/pat.richness_per_vegtype.png")  ## export graphics (changing names accordingly)
 p
 dev.off()
 
 
 ### 5. Community composition
 
+# Select data (trophic modes)
+subset.mc2.binary
+
+list=row.names(guild_table)[which(guild_table$primary_lifestyle=="ectomycorrhizal")]
+ecm.subset.binary=prune_taxa(list, subset.mc2.binary)
+ecm.subset.binary = prune_samples(sample_sums(ecm.subset.binary)>0, ecm.subset.binary)  ### remove samples with zero count
+ecm.subset.binary = subset_samples(sap.subset.binary, sample_names(sap.subset.binary) != '402150')   ### remove outliers
+
+glo.subset.binary=subset_taxa(subset.mc2.binary, Phylum=="Glomeromycota")
+glo.subset.binary = prune_samples(sample_sums(glo.subset.binary)>0, glo.subset.binary)
+
+list=row.names(guild_table)[which(guild_table$primary_lifestyle %like% "saprotroph")]   ### include all saprotroph sub-categories
+sap.subset.binary=prune_taxa(list, subset.mc2.binary)
+sap.subset.binary = prune_samples(sample_sums(sap.subset.binary)>0, sap.subset.binary)
+sap.subset.binary = subset_samples(sap.subset.binary, sample_names(sap.subset.binary) != '402042')   ### remove outliers
+sap.subset.binary = subset_samples(sap.subset.binary, sample_names(sap.subset.binary) != '402043')
+sap.subset.binary = subset_samples(sap.subset.binary, sample_names(sap.subset.binary) != '402077')
+sap.subset.binary = subset_samples(sap.subset.binary, sample_names(sap.subset.binary) != '402103')
+
+list=row.names(guild_table)[which(guild_table$primary_lifestyle=="plant_pathogen")]
+pat.subset.binary=prune_taxa(list, subset.mc2.binary)
+pat.subset.binary = prune_samples(sample_sums(pat.subset.binary)>0, pat.subset.binary)
+
+
 # Ordination (Raup-Crick distance of presence/absence data)
-ordination = ordinate(subset.mc2.binary, method = "NMDS", distance = "raup", trymax=1000, k=2, noshare=(engine="isoMDS"))
+data_selected = pat.subset.binary
+
+ordination = ordinate(data_selected, method = "NMDS", distance = "raup", trymax=500, k=2, noshare=(engine="isoMDS"))
 stressplot(ordination)
 str(ordination)
 
@@ -186,53 +252,79 @@ str(ordination)
 env <- c("Depth","Type","State","Dom_grasses_percent","Dom_trees_percent",
          "pH_solid_H2O","Organic_carbon_percent","Clay_percent","Gravel_percent","Sand_percent")
 
-data2 <- data[, env]
+data = cbind(subset(sample_data(data_selected), select = env))
 
-predictors <- envfit(ordination, data2, permutations = 999, na.rm = TRUE)
-predictors  ## all variables are significant apart from Depth and Gravel %
+# Convert variables to numeric or factors
+data = data %>% 
+  mutate_at('Depth', as.factor) %>%
+  mutate_at('Type', as.factor) %>%
+  mutate_at('State', as.factor) %>%
+  mutate_at('Dom_grasses_percent', as.numeric) %>% 
+  mutate_at('Dom_trees_percent', as.numeric) %>%
+  mutate_at('pH_solid_H2O', as.numeric) %>% 
+  mutate_at('Organic_carbon_percent', as.numeric) %>% 
+  mutate_at('Clay_percent', as.numeric) %>%
+  mutate_at('Gravel_percent', as.factor) %>%
+  mutate_at('Sand_percent', as.numeric) 
+data %>% str()
 
+data$Gravel_percent  = factor(data$Gravel_percent,  ## reorder
+                              levels=c("0-5", "5-10", "10-15", "15-20", "25-30","35-40","45-50","55-60"))  
+# Best predictors
+predictors <- envfit(ordination, data, permutations = 999, na.rm = TRUE)
+predictors  ## all fungi: all variables are significant apart from Depth and Gravel %
+            ## ecm: same (outliers removed)
+            ## glo: none
+            ## sap: same (outliers removed)
+            ## pat: all except pH, Clay, Depth and Gravel, but strage ordination 
 
 # NMDS plots
-NMDS = data.frame(scores(ordination)$sites, data2)
+NMDS = data.frame(scores(ordination)$sites, data)
+
+ggplot(NMDS, aes(NMDS1, NMDS2, color=Type)) +   ### get names to remove outliers
+  labs(color = "Vegetation type") +
+  theme(aspect.ratio=1) + geom_point(size=3) +
+  geom_text(label=rownames(NMDS), angle =145)
 
 p1=ggplot(NMDS, aes(NMDS1, NMDS2, color=Type)) +
   labs(color = "Vegetation type") +
   theme(aspect.ratio=1) + geom_point(size=3)
-
+p1
 p2=ggplot(NMDS, aes(NMDS1, NMDS2, color=State)) +
   labs(color = "Vegetation state") +
   theme(aspect.ratio=1) + geom_point(size=3)
-
+p2
 p3=ggplot(NMDS, aes(NMDS1, NMDS2, color=Dom_grasses_percent)) +
   labs(color = "Dominant grasses (%)") +
   theme(aspect.ratio=1) + geom_point(size=3) +
   scale_colour_gradient(low = "yellow", high = "dark blue")
-
+p3
 p4=ggplot(NMDS, aes(NMDS1, NMDS2, color=Dom_trees_percent)) +
   labs(color = "Dominant trees (%)") +
   theme(aspect.ratio=1) + geom_point(size=3) +
   scale_colour_gradient(low = "yellow", high = "dark blue")
-
+p4
 p5=ggplot(NMDS, aes(NMDS1, NMDS2, color=pH_solid_H2O)) +
   labs(color = "pH (solid H20)") +
   theme(aspect.ratio=1) + geom_point(size=3) +
   scale_colour_gradient(low = "yellow", high = "dark blue")
-
+p5
 p6=ggplot(NMDS, aes(NMDS1, NMDS2, color=Organic_carbon_percent)) +
   labs(color = "Organic C (%)") +
   theme(aspect.ratio=1) + geom_point(size=3) +
   scale_colour_gradient(low = "yellow", high = "dark blue")
-
+p6
 p7=ggplot(NMDS, aes(NMDS1, NMDS2, color=Clay_percent)) + 
   labs(color = "Clay (%)") +
   theme(aspect.ratio=1) + geom_point(size=3) +
   scale_colour_gradient(low = "yellow", high = "dark blue")
-
+p7
 p8=ggplot(NMDS, aes(NMDS1, NMDS2, color=Sand_percent)) + 
   labs(color = "Sand (%)") +
   theme(aspect.ratio=1) + geom_point(size=3) +
   scale_colour_gradient(low = "yellow", high = "dark blue")
+p8
 
-png(file="../Output/ITS/R_plots/NMDS_plots.png", width = 750, height = 1000,)  ## export graphic
+png(file="../Output/ITS/R_plots/NMDS_plots_ecm.png", width = 750, height = 1000,)  ## export graphic
 plot_grid(p1,p2,p3,p4,p5,p6,p7,p8, ncol=2, nrow=4, align = "v")
 dev.off()

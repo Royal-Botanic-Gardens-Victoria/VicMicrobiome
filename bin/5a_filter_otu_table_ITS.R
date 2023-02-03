@@ -1,5 +1,6 @@
-### Script to filter out contaminant reads (negative controls)
-### and low abundance taxa due to index bleed from the OTU table
+### Script to clean contaminant reads (negative controls),
+### filter out low abundance taxa (index bleed) from the OTU table,
+### and assign guilds to OTU based on FungalTraits (Polme et al. 2020)
 
 
 ### 1. Set working directory to source file
@@ -123,9 +124,18 @@ otu_table(mc1.rel) = ceiling(otu_table(mc1.rel, "matrix"))   ### transform to ne
 mc1.prc = transform_sample_counts(amptk_filtered, function(x) 100 * x/sum(x))
 
 
+### 8. Assign guilds to OTUs
+
+#Function to assign guild/traits to OTUs based on taxonomy
+source("R_functions/assign_guild.R")   
+
+guild_table = assign_guild(object = mc1.rel, database="FungalTraits")   ### Polme et al. 2020, Fungal Diversity 105, 1-16
+write.csv(guild_table, "../output/ITS/FungalTraits_table.csv", row.names=TRUE)   ### export table
+
+
 ### FINAL OTU TABLES OBTAINED FOR DOWNSTREAM ANALYSES
 mc1.binary
 mc2.binary
 mc1.rel
 mc1.prc
-
+guild_table
