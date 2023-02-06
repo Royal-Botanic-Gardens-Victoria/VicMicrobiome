@@ -25,7 +25,7 @@ Program used:
 - Tables with most frequent/abundant OTUs and fungal genera
 - Diversity plots
 
-[`technical_report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/technical_report.md) discusses each step of the pipeline used to generate the OTU table and provide suggestions for future studies.
+[`technical_report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/technical_report.md) discusses each step of the pipeline used to generate the OTU tables and assign functional guilds to fungal OTUs, as well as providing suggestions for future studies.
 
 [`diversity_report.md`](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/tree/main/diversity_report.md) provides some baseline diversity analyses and briefly discuss the results.
 
