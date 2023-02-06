@@ -47,7 +47,7 @@ After filtering for index bleed and contaminants reads from negative control sam
 
 ### 16S (Bacteria)
 
-Only 232,938 reads passed quality filtering and clustered into 1,040 bacterial OTUs.
+Only 232,938 reads passed quality filtering and clustered into 1,040 bacterial OTUs. After filtering for index bleed and contaminants reads from negative control samples using [R](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/5b_filter_otu_table_16S.R), as well as removing OTUs from other samples that were included in the runs, we obtained a final [OTU table](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/16S/OTU_table_16S.csv) with 838 OTUs. Out of these, 151 OTUs (18%) were present in only one sample.
 
 
 # Trophic modes (Fungi)
@@ -74,5 +74,5 @@ Out of 2794 OTUs, 566 taxa corresponded to ectomycorrhizal species, 63 to arbusc
 
 ### Sampling effort and further research
 
-- Despite the extensive sampling, 56% of fungal OTUs were detected in only one sample. This indicate that a much more extensive sampling is needed to capture the diversity of soil fungi in Victoria.
-- 50% of fungal OTUs could not be assigned to a functional guild due to insufficent taxonomic identification. This emphazise the gap of knowledge about soil fungi in Victoria and the need to conduct more specimen-based research, integrating both species descriptions and DNA sequencing, to aid the identification of soil microorganisms from eDNA samples. Such knowledge is critical for eDNA monitoring that depend on databases with accurate sequence identification [(Truong et al. 2017)](https://doi.org/10.1111/nph.14509).
+- Despite the extensive sampling, 56% of fungal OTUs were detected in only one sample. This indicates that a much more extensive sampling is needed to capture the diversity of soil fungi in Victoria.
+- 50% of fungal OTUs could not be assigned to a functional guild due to insufficent taxonomic identification. This emphazises the gap of knowledge about soil fungi in Victoria and the need to conduct more specimen-based research, integrating both species descriptions and DNA sequencing, to aid the identification of soil microorganisms from eDNA samples. Such knowledge is critical for eDNA monitoring that depend on databases with accurate sequence identification [(Truong et al. 2017)](https://doi.org/10.1111/nph.14509).

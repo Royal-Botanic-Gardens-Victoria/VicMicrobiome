@@ -1,7 +1,7 @@
 
 # Goals
 
-We tested for the correlation of fungal species richness (alpha-diversity) and fungal community structure (beta-diversity) with the following [environmental variables](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/data/VicMicrobiome_metadata.csv):
+We tested for the correlation of species richness (alpha-diversity) and community structure (beta-diversity) with the following [environmental variables](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/data/VicMicrobiome_metadata.csv):
 
 - Vegetation type
 - Vegetation state
@@ -21,7 +21,9 @@ The following variables were omitted because they contained too many missing dat
 - Phosphorus (mg/kg, Colwell)
 
 
-# Species richness
+# Fungi
+
+## Species richness
 
 According to our dataset, the [most frequent fungal genera](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/20_most_frequent_genera.csv) in Victorian soils are saprophytic taxa from the genus *Mortierella*, followed by ectomycorrhizal species in the genera *Russula*, *Cortinarius* and *Inocybe*.
 Additionally, the following species were among the [most frequent fungal species](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/50_most_frequent_OTUs.csv) as well as the [most abundant fungal species](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/50_most_abundant_OTUs.csv) that we detected:
@@ -33,7 +35,7 @@ Additionally, the following species were among the [most frequent fungal species
 - *Mortierella humilis* (saprophytic)
 
 
-As expected, Ascomycota and Basidiomycota were the most species-rich fungal phyla across all the vegetation types sampled (Fig. 1).
+As expected, Ascomycota and Basidiomycota were the most species-rich fungal phyla across the vegetation types sampled (Fig. 1).
 
 
 **FIGURE 1. OTU frequency of each phylum per vegetation type**
@@ -41,9 +43,7 @@ As expected, Ascomycota and Basidiomycota were the most species-rich fungal phyl
 ![](output/ITS/R_plots/phylum_per_vegtype.png)
 
 
-We tested for the correlation of fungal species richness with environmental variables using Chi square tests and generalized linear models with a negative binomial distribution.
-
-Despite some differences in the frequency of the [20 most frequent fungal genera](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/20_most_frequent_genera.csv) between vegetation types (Fig. 2), no significant differences in overall species richness was found between vegetation types (Fig. 3). Among all the variables tested, the only significant predictor of overall fungal richness was soil pH (Pvalue = 0.003, Fig. 4).
+We tested for the correlation of fungal species richness with environmental variables using Chi square tests and generalized linear models with a negative binomial distribution. Despite some differences in the frequency of the [20 most frequent fungal genera](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/20_most_frequent_genera.csv) between vegetation types (Fig. 2), no significant difference in overall species richness was found between vegetation types (Fig. 3). Among all the variables tested, the only significant predictor of overall fungal richness was soil pH (Pvalue = 0.003, Fig. 4).
 
 
 **FIGURE 2. OTU frequency of the top 20 fungal genera per vegetation type**
@@ -89,7 +89,7 @@ On the other hand, ectomycorrhizal fungal richness was significantly different (
 ![](output/ITS/R_plots/pat.richness_per_vegstate.png)
 
 
-# Community composition
+## Community composition
 
 We tested for the correlation of fungal community composition with environmental variables by generating
 a Raup-Crick distance matrix (based on presence-absence of OTUs occuring in at least two samples) and fitting environmental vectors or factors onto the ordination with the `envfit` function. The ordination was visualized using non-metric multidimensional scaling (NMDS) and samples were colour-coded according to significant environmental predictors.
@@ -109,3 +109,44 @@ All the environmental variables listed above correlated significantly with the o
 **FIGURE 12. NMDS of the saprophytic fungal community composition with samples color-coded according to significant environmental variables (Pvalue < 0.001)**
 
 ![](output/ITS/R_plots/NMDS_plots_sap.png)
+
+
+# Bacteria
+
+## Species richness
+
+According to our dataset, the [most frequent bacterial species](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/16S/50_most_frequent_OTUs.csv) as well as the [most abundant bacterial species](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/50_most_abundant_OTUs.csv) belonged to Rhizobiales, Actinomycetales, Solirubrobacterales and Baciliales.
+The [most frequent bacterial genera](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/16S/20_most_frequent_genera.csv) in Victorian soils are *Gaiella*, *Mycobacterium*, *Solirubrobacter*, *Bradyrhizobium* and *Pseudonocardia*.
+
+
+Actinomycetales, Rhizobiales and Rhodospirillales were the most species-rich and frequently detected bacterial orders across the vegetation types sampled (Fig. 13).
+
+
+**FIGURE 13. OTU frequency of each bacterial order per vegetation type**
+
+![](output/16S/R_plots/order_per_vegtype.png)
+
+
+We tested for the correlation of bacterial species richness with environmental variables using Chi square tests and generalized linear models with a negative binomial distribution. Significant differences (Pvalue < 0.05) in species richness were found between % organic carbon (Fig. 14), vegetation types (Fig. 15), soil depth and % dominant trees. 
+
+**FIGURE 14. Correlation of species richness with soil organic carbon**
+
+![](output/16S/R_plots/richness_per_organicC.png)
+
+**FIGURE 15. Bacterial species richness per vegetation type**
+
+![](output/16S/R_plots/richness_per_vegtype.png)
+
+
+
+## Community composition
+
+We tested for the correlation of bacterial community composition with environmental variables by generating
+a Raup-Crick distance matrix (based on presence-absence of OTUs occuring in at least two samples) and fitting environmental vectors or factors onto the ordination with the `envfit` function. The ordination was visualized using non-metric multidimensional scaling (NMDS) and samples were colour-coded according to significant environmental predictors.
+
+All the environmental variables listed above correlated significantly with the bacterial community composition (Pvalue < 0.03), except for % gravel (Fig. 16).
+
+
+**FIGURE 16. NMDS of the bacterial community composition with samples color-coded according to significant environmental variables (Pvalue < 0.03)**
+
+![](output/16S/R_plots/NMDS_plots.png)
