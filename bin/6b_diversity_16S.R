@@ -17,6 +17,15 @@ mc1.rel
 mc1.prc
 
 
+### 3. Species accumulation curves
+
+png(file="../Output/16S/R_plots/specaccum.png")  ## export graphic
+
+select = mc1.rel  ## select data
+data = t(otu_table(select))  ## otu table in vegan
+ALL=plot(specaccum(data),xlab="Number of samples",ylab="Number of species")
+
+dev.off()
 
 ### 3. Overall diversity
 

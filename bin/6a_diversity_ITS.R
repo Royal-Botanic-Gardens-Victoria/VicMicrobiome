@@ -18,7 +18,6 @@ mc1.prc
 guild_table
 
 
-
 ### 3. Filter OTUs by guild
 
 unique(guild_table$primary_lifestyle)
@@ -30,7 +29,7 @@ ecm.rel=prune_taxa(list, mc1.rel)
 glo.binary=subset_taxa(mc1.binary, Phylum=="Glomeromycota")
 glo.rel=subset_taxa(mc1.rel, Phylum=="Glomeromycota")
 
-list=row.names(guild_table)[which(guild_table$primary_lifestyle %like% "saprotroph")]   ### include all sapotroph sub-cathegories
+list=row.names(guild_table)[which(guild_table$primary_lifestyle %like% "saprotroph")]   ### include ALL sapotroph sub-cathegories
 sap.binary=prune_taxa(list, mc1.binary)
 sap.rel=prune_taxa(list, mc1.rel)
 
@@ -39,8 +38,36 @@ pat.binary=prune_taxa(list, mc1.binary)
 pat.rel=prune_taxa(list, mc1.rel)
 
 
+### 4. Species accumulation curves
 
-### 4. Overall diversity
+png(file="../Output/ITS/R_plots/specaccum.png")  ## export graphic
+
+select = mc1.rel  ## select data
+data = t(otu_table(select))  ## otu table in vegan
+ALL=plot(specaccum(data),xlab="Number of samples",ylab="Number of species")
+
+select = ecm.rel  ## select data
+data = t(otu_table(select))  ## otu table in vegan
+ECM=plot(specaccum(data), add = TRUE, col = 2)
+
+select = glo.rel  ## select data
+data = t(otu_table(select))  ## otu table in vegan
+AMF=plot(specaccum(data), add = TRUE, col = 3)
+
+select = sap.rel  ## select data
+data = t(otu_table(select))  ## otu table in vegan
+SAP=plot(specaccum(data), add = TRUE, col = 4)
+
+select = pat.rel  ## select data
+data = t(otu_table(select))  ## otu table in vegan
+PAT=plot(specaccum(data), , add = TRUE, col = 5)
+
+legend(x = "topleft", legend = c("All fungi", "ECM fungi","AM fungi","SAP fungi","Plant PAT" ), fill = c("black",2,3,4,5))
+
+dev.off()
+
+
+### 5. Overall diversity
 
 # List of 50 most frequent/abundant OTUS
 input=mc1.rel   ### mc1.binary for frequency, mc1.rel for relative abundance
@@ -89,7 +116,7 @@ p
 dev.off()
 
 
-### 5. Variables to test:
+### 6. Variables to test:
 
 # Depth
 # pH_solid_H2O
@@ -134,7 +161,7 @@ subset.mc2.binary = subset_samples(subset.mc2.binary, rownames(sample_data(subse
 subset.mc2.binary
 
 
-### 6. Species richness
+### 7. Species richness
 
 # Select data (trophic modes)
 subset.mc1.rel
@@ -144,7 +171,7 @@ ecm.subset.rel=prune_taxa(list, subset.mc1.rel)
 
 glo.subset.rel=subset_taxa(subset.mc1.rel, Phylum=="Glomeromycota")
 
-list=row.names(guild_table)[which(guild_table$primary_lifestyle %like% "saprotroph")]   ### include all saprotroph sub-cathegories
+list=row.names(guild_table)[which(guild_table$primary_lifestyle %like% "saprotroph")]   ### include ALL saprotroph sub-cathegories
 sap.subset.rel=prune_taxa(list, subset.mc1.rel)
 
 list=row.names(guild_table)[which(guild_table$primary_lifestyle=="plant_pathogen")]
@@ -180,7 +207,7 @@ data$Gravel_percent  = factor(data$Gravel_percent,  ## reorder
 
 
 # Find best predictor of species richness (generalized linear model with negative binomial distribution)
-all <- glm.nb(Observed ~ Depth + 
+ALL <- glm.nb(Observed ~ Depth + 
                 pH_solid_H2O +
                 Organic_carbon_percent +
                 Type +
@@ -192,9 +219,9 @@ all <- glm.nb(Observed ~ Depth +
                 Dom_trees_percent,
                 data = data)
 
-summary(all)
-car::vif(all)  ## check for multi-colinearity of factors
-dropterm(all, test = "Chisq")  ## significant predictors = pH !!    
+summary(ALL)
+car::vif(ALL)  ## check for multi-colinearity of factors
+dropterm(ALL, test = "Chisq")  ## significant predictors = pH !!    
                 
 # Plot
 p = ggplot(data, aes(x=Dom_trees_percent, y=Observed)) + geom_point() +
@@ -215,7 +242,7 @@ p
 dev.off()
 
 
-### 5. Community composition
+### 8. Community composition
 
 # Select data (trophic modes)
 subset.mc2.binary
@@ -228,7 +255,7 @@ ecm.subset.binary = subset_samples(sap.subset.binary, sample_names(sap.subset.bi
 glo.subset.binary=subset_taxa(subset.mc2.binary, Phylum=="Glomeromycota")
 glo.subset.binary = prune_samples(sample_sums(glo.subset.binary)>0, glo.subset.binary)
 
-list=row.names(guild_table)[which(guild_table$primary_lifestyle %like% "saprotroph")]   ### include all saprotroph sub-categories
+list=row.names(guild_table)[which(guild_table$primary_lifestyle %like% "saprotroph")]   ### include ALL saprotroph sub-categories
 sap.subset.binary=prune_taxa(list, subset.mc2.binary)
 sap.subset.binary = prune_samples(sample_sums(sap.subset.binary)>0, sap.subset.binary)
 sap.subset.binary = subset_samples(sap.subset.binary, sample_names(sap.subset.binary) != '402042')   ### remove outliers
@@ -272,11 +299,11 @@ data$Gravel_percent  = factor(data$Gravel_percent,  ## reorder
                               levels=c("0-5", "5-10", "10-15", "15-20", "25-30","35-40","45-50","55-60"))  
 # Best predictors
 predictors <- envfit(ordination, data, permutations = 999, na.rm = TRUE)
-predictors  ## all fungi: all variables are significant apart from Depth and Gravel %
+predictors  ## All fungi: All variables are significant apart from Depth and Gravel %
             ## ecm: same (outliers removed)
             ## glo: none
             ## sap: same (outliers removed)
-            ## pat: all except pH, Clay, Depth and Gravel, but strage ordination 
+            ## pat: all except pH, Clay, Depth and Gravel, but strange ordination 
 
 # NMDS plots
 NMDS = data.frame(scores(ordination)$sites, data)
