@@ -1,22 +1,22 @@
 # Quality check of raw sequences
 
-The number of reads varied greatly between samples, both for ITS (fungi) and 16S (bacteria). This is likely to induce biases against rare taxa in the samples with fewer reads.
+The number of reads varied greatly between samples, both for ITS (fungi, Fig. 1) and 16S (bacteria, Fig. 2). This is likely to induce biases against rare taxa in the samples with fewer reads.
 
-**MultiQC plot of the number of ITS forward reads per sample (fungi)**
+**FIGURE 1. MultiQC plot of the number of ITS forward reads per sample (fungi)**
 ![](output/ITS/fastqc_report/read_count_R1.png)
 
-**MultiQC plot of the number of 16S forward reads per sample (bacteria)**
+**FIGURE 2. MultiQC plot of the number of 16S forward reads per sample (bacteria)**
 ![](output/16S/fastqc_report/read_count_R1.png)
 
-The quality of ITS reads (fungi) was below the 1% error rate (*Phred score = 20**) towards the last ca. 50 bp of the sequences. This was especially relevant for reverse (R2) reads and is likely to preclude the merging of R1 and R2 reads.
+The quality of ITS reads (fungi) was below the 1% error rate (*Phred score = 20*) towards the last ca. 50 bp of the sequences (Fig. 3). This was especially relevant for reverse (R2) reads and is likely to preclude the merging of R1 and R2 reads.
 
 
-**MultiQC plot of the quality score (Phred) per base call along ITS reverse reads (fungi)**
+**FIGURE 3. MultiQC plot of the quality score (Phred) per base call along ITS reverse reads (fungi)**
 ![](output/ITS/fastqc_report/phred_score_R2.png)
 
-The quality of 16S reads (bacteria) was below the 1% error rate for up to 2/3 of the read lenght for a proportion of the data. This is likely to induce large data loss in order to obtain robust diversity assumptions.
+The quality of 16S reads (bacteria) was below the 1% error rate for up to 2/3 of the read lenght for a proportion of the data (Fig. 4). This is likely to induce large data loss in order to obtain robust diversity assumptions.
 
-**MultiQC plot of the quality score (Phred) per base call along 16S reverse reads (bacteria)**
+**FIGURE 4. MultiQC plot of the quality score (Phred) per base call along 16S reverse reads (bacteria)**
 ![](output/16S/fastqc_report/phred_score_R2.png)
 
 **Phred score = 20: likelihood of finding 1 incorrect base call among 100 bases.*
@@ -43,19 +43,24 @@ Two approaches are commonly used to identifiy microbial diversity from sequence 
 
 The [mock community samples](https://www.atcc.org/products/msa-1010) had 78 to >200 OTUs instead of the expected 10, indicating a high index bleed in both runs. We therefore filtered out low abundance OTUs (<0.5% of total read count per sample) in [R](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/R_functions/filter_OTU_per_sample.R) to obtain the adequate number of OTUs in the mock community samples. Our approach emphasizes how index bleed can inflate the overall diversity of a dataset by more than x10. It is therefore important to filter out low abundance OTUs based on the OTU count per sample, using mock community controls to parametrize these filters.
 
-After filtering for index bleed and contaminants reads from negative control samples using [R](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/5a_filter_otu_table_ITS.R), as well as removing OTUs from other samples that were included in the runs, we obtained a final [OTU table](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/OTU_table_ITS.csv) with 2794 OTUs. Out of these, 1570 OTUs (56%) were present in only one sample. It is therefore probable that our dataset only detected a portion of the fungal diversity occuring in Victorian soils despite of the extensive sampling.   
+After filtering for index bleed and contaminants reads from negative control samples using [R](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/5a_filter_otu_table_ITS.R), as well as removing OTUs from other samples that were included in the runs, we obtained a final [OTU table](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/OTU_table_ITS.csv) with 2794 OTUs. Out of these, 1570 OTUs (56%) were present in only one sample and species accumulation curves were far from being saturated (Fig. 5). This indicates that our dataset only detected a small portion of the fungal diversity occuring in Victorian soils.
+
+
+**FIGURE 5. Species accumulation curves representing the number of fungal OTUs recovered with increasing sample effort for the overall diversity and each functional guild**
+![](output/ITS/R_plots/specaccum.png)
 
 ### 16S (Bacteria)
 
-Only 232,938 reads passed quality filtering and clustered into 1,040 bacterial OTUs. After filtering for index bleed and contaminants reads from negative control samples using [R](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/5b_filter_otu_table_16S.R), as well as removing OTUs from other samples that were included in the runs, we obtained a final [OTU table](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/16S/OTU_table_16S.csv) with 838 OTUs. Out of these, 151 OTUs (18%) were present in only one sample.
+Only 232,938 reads passed quality filtering and clustered into 1,040 bacterial OTUs. After filtering for index bleed and contaminants reads from negative control samples using [R](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/bin/5b_filter_otu_table_16S.R), as well as removing OTUs from other samples that were included in the runs, we obtained a final [OTU table](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/16S/OTU_table_16S.csv) with 838 OTUs. Out of these, 151 OTUs (18%) were present in only one sample and species accumulation curves were approaching saturation (Fig. 6). This indicate that our sampling captured a good proportion of the bacterial diversity occuring in Victorian soils.
+
+**FIGURE 6. Species accumulation curves representing the number of bacterial OTUs recovered with increasing sample effort**
+![](output/16S/R_plots/specaccum.png)
 
 
 # Trophic modes (Fungi)
 We assigned the functional guild of fungal OTUs based on their taxonomy according to the  FungalTraits database [(Polme et al. 2020)](https://link.springer.com/article/10.1007/s13225-020-00466-2). The final table with the taxonomy and corresponding guild of each OTU can be found [here](https://github.com/Royal-Botanic-Gardens-Victoria/VicMicrobiome/blob/main/output/ITS/FungalTraits_table.csv).
 
 Out of 2794 OTUs, 566 taxa corresponded to ectomycorrhizal species, 63 to arbuscular mycorrhizal species, 621 to saprotrophic species, 105 to plant pathogens and 46 to parasitic species. The remaining 1393 OTUs (50%) did not have sufficent taxonomic identification to be assigned a guild. This enlightens the need for more specimen-based research in mycology in order to accurately link DNA sequences to species.
-
-
 
 
 # Recommendations
@@ -74,5 +79,5 @@ Out of 2794 OTUs, 566 taxa corresponded to ectomycorrhizal species, 63 to arbusc
 
 ### Sampling effort and further research
 
-- Despite the extensive sampling, 56% of fungal OTUs were detected in only one sample. This indicates that a much more extensive sampling is needed to capture the diversity of soil fungi in Victoria.
-- 50% of fungal OTUs could not be assigned to a functional guild due to insufficent taxonomic identification. This emphazises the gap of knowledge about soil fungi in Victoria and the need to conduct more specimen-based research, integrating both species descriptions and DNA sequencing, to aid the identification of soil microorganisms from eDNA samples. Such knowledge is critical for eDNA monitoring that depend on databases with accurate sequence identification [(Truong et al. 2017)](https://doi.org/10.1111/nph.14509).
+- Despite the large sample size, 56% of fungal OTUs were detected in only one sample. Species accumulation curves indicate that only a small portion of fungal diversity was detected and sampling effort needs to be extended over more sites and replicates per sites (for example at different time points throughout the year) to capture the diversity of soil fungi in Victoria.
+- 50% of fungal OTUs could not be assigned to a functional guild due to insufficent taxonomic identification. This emphazises the gap of knowledge about soil fungi in Victoria and the need to conduct more specimen-based research, integrating new species descriptions and DNA sequencing, to aid the identification of soil microorganisms and functions from eDNA samples. Such knowledge is critical for eDNA studies and soil health monitoring that depend on databases with accurate sequence identification [(Truong et al. 2017)](https://doi.org/10.1111/nph.14509).
