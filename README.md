@@ -1,8 +1,5 @@
 # Soil meta-barcoding across the state of Victoria (Australia)
 
-# <span style="color:red">*** *Under development* ***</span>
-
-
 # Repository map 
 
 In this repository you can find scripts, data and output to analyse microbial communities (fungi and bacteria) from soil samples using eDNA meta-barcoding. 
