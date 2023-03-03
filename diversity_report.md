@@ -31,8 +31,8 @@ Additionally, the following species were among the [most frequent fungal species
 - *Umbelopsis dimorpha* (endophytic)
 - *Fusarium oxysporum* (plant pathogen)
 - *Saitozyma podzolica* (yeast)
-- *Mortierella elongata* (saprophytic)
-- *Mortierella humilis* (saprophytic)
+- *Mortierella elongata* (saprotrophic)
+- *Mortierella humilis* (saprotrophic)
 
 
 As expected, Ascomycota and Basidiomycota were the most species-rich fungal phyla across the vegetation types sampled (Fig. 1).
