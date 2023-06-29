@@ -2,21 +2,21 @@
 
 The number of reads varied greatly between samples, both for ITS (fungi, Fig. 1) and 16S (bacteria, Fig. 2). This is likely to induce biases against rare taxa in the samples with fewer reads.
 
-**FIGURE 1. MultiQC plot of the number of ITS forward reads per sample (fungi)**
+**FIGURE TA-1. MultiQC plot of the number of ITS forward reads per sample (fungi)**
 ![](output/ITS/fastqc_report/read_count_R1.png)
 
-**FIGURE 2. MultiQC plot of the number of 16S forward reads per sample (bacteria)**
+**FIGURE TA-2. MultiQC plot of the number of 16S forward reads per sample (bacteria)**
 ![](output/16S/fastqc_report/read_count_R1.png)
 
 The quality of ITS reads (fungi) was below the 1% error rate (*Phred score = 20*) towards the last ca. 50 bp of the sequences (Fig. 3). This was especially relevant for reverse (R2) reads and is likely to preclude the merging of R1 and R2 reads.
 
 
-**FIGURE 3. MultiQC plot of the quality score (Phred) per base call along ITS reverse reads (fungi)**
+**FIGURE TA-3. MultiQC plot of the quality score (Phred) per base call along ITS reverse reads (fungi)**
 ![](output/ITS/fastqc_report/phred_score_R2.png)
 
 The quality of 16S reads (bacteria) was below the 1% error rate for up to 2/3 of the read lenght for a proportion of the data (Fig. 4). This is likely to induce large data loss in order to obtain robust diversity assumptions.
 
-**FIGURE 4. MultiQC plot of the quality score (Phred) per base call along 16S reverse reads (bacteria)**
+**FIGURE TA-4. MultiQC plot of the quality score (Phred) per base call along 16S reverse reads (bacteria)**
 ![](output/16S/fastqc_report/phred_score_R2.png)
 
 **Phred score = 20: likelihood of finding 1 incorrect base call among 100 bases.*
